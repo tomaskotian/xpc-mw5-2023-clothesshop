@@ -1,3 +1,9 @@
+using ClothesShop.DAL.Migrations;
+using ClothesShop.DAL.Entities;
+
+var InitialData = new InitialData();
+List<ClothingEntity> Data = InitialData.GetFakeClothingEntities(15);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
