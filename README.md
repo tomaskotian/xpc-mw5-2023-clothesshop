@@ -5,11 +5,11 @@
 - Tomáš Pečinka tomas-pecinka@seznam.cz
 ## TODO
 - Tomáš Kotian
--- [] API
--- [] Bogus
+  - [ ] API
+  - [ ] Bogus
 - Ľudovít Sčensný
--- [x] Data Model
--- [] Bogus
+  - [x] Data Model
+  - [ ] Bogus
 - Tomáš Pečinka
--- [] API
+  - [ ] API
 ## variant of the project A
