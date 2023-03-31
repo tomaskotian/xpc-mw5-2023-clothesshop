@@ -9,7 +9,8 @@
   - [ ] Bogus
 - Ľudovít Sčensný
   - [x] Data Model
-  - [ ] Bogus
+  - [x] Initialization Bogus
 - Tomáš Pečinka
   - [ ] API
+  - [ ] GitHub Wiki
 ## variant of the project A
