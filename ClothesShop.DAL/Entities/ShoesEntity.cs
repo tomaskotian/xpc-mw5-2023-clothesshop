@@ -3,7 +3,7 @@ using ClothesShop.Common.Enums;
 
 namespace ClothesShop.DAL.Entities
 {
-    public class ShoesEntity : IClothes
+    public class ShoesEntity : CommoditiesEntity, IClothes
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
