@@ -18,4 +18,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+  	<ProjectReference Include="..\ClothesShop.Common\ClothesShop.Common.csproj" />
+	<ProjectReference Include="..\ClothesShop.DAL\ClothesShop.DAL.csproj" />
+  </ItemGroup>
+
+
 </Project>
