@@ -1,4 +1,4 @@
-﻿namespace ClothesShopWebAPI.Enums
+﻿namespace ClothesShop.Common.Enums
 {
     public enum Sex
     {
