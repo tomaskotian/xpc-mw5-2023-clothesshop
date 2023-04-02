@@ -1,8 +1,9 @@
 using ClothesShop.DAL.Migrations;
 using ClothesShop.DAL.Entities;
 
+//Create fake data
 var InitialData = new InitialData();
-List<ClothingEntity> Data = InitialData.GetFakeClothingEntities(15);
+ICollection<CommoditiesEntity> Data = InitialData.GetCommoditiesEntities(15);
 
 var builder = WebApplication.CreateBuilder(args);
 
