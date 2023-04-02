@@ -5,8 +5,8 @@
 - Tomáš Pečinka tomas-pecinka@seznam.cz
 ## TODO
 - Tomáš Kotian
-  - [ ] API
-  - [ ] Bogus
+  - [x] API GET
+  - [x] Bogus
 - Ľudovít Sčensný
   - [x] Data Model
   - [x] Initialization Bogus
