@@ -4,40 +4,40 @@ using ClothesShop.Common.Enums;
 using ClothesShop.DAL.Entities;
 
 namespace ClothesShop.DAL.Migrations;
-public class InitialData : CommoditiesEntity
+public class InitialData 
 {   
-    public ICollection<CommoditiesEntity> Data;
+    public List<object> Data;
     public InitialData() 
     {
         Data = GetCommoditiesEntities(15);
     }
 
-    private static ICollection<CommoditiesEntity> GetCommoditiesEntities(int count)
+    private static List<object> GetCommoditiesEntities(int count)
     {
-        ICollection<CommoditiesEntity> DataCollection = new List<CommoditiesEntity>();
+        List<object> data = new List<object>();
         var Clothing = GetFakeClothingEntities(count);
         var Shoes = GetFakeShoesEntities(count);
         var Accessories = GetFakeAccessoriesEntities(count);
 
         foreach (ClothingEntity clothes in Clothing)
         {
-            DataCollection.Add(clothes);
+            data.Add(clothes);
         }
 
         foreach (ShoesEntity shoes in Shoes)
         {
-            DataCollection.Add(shoes);
+            data.Add(shoes);
         }
 
         foreach (AccessoriesEntity accessorie in Accessories)
         {
-            DataCollection.Add(accessorie);
+            data.Add(accessorie);
         }
 
-        return DataCollection;
+        return data;
     }
 
-    private static ICollection<ClothingEntity> GetFakeClothingEntities(int count)
+    private static List<ClothingEntity> GetFakeClothingEntities(int count)
     {
         Randomizer.Seed = new Random(895344);
         var Faker = new Faker();
@@ -75,7 +75,7 @@ public class InitialData : CommoditiesEntity
         return ClothingFaker.Generate(count);
     }
 
-    private static ICollection<AccessoriesEntity> GetFakeAccessoriesEntities(int count)
+    private static List<AccessoriesEntity> GetFakeAccessoriesEntities(int count)
     {
         Randomizer.Seed = new Random(895333);
         var Faker = new Faker();
@@ -111,7 +111,7 @@ public class InitialData : CommoditiesEntity
         return ClothingFaker.Generate(count);
     }
 
-    private static ICollection<ShoesEntity> GetFakeShoesEntities(int count)
+    private static List<ShoesEntity> GetFakeShoesEntities(int count)
     {
         Randomizer.Seed = new Random(623423);
         var Faker = new Faker();

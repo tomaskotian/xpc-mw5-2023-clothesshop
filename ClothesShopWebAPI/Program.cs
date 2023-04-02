@@ -1,15 +1,15 @@
+
+using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Migrations;
-using ClothesShop.DAL.Entities;
-
-//Create fake data
-var InitialData = new InitialData();
-
+using ClothesShop.DAL.Repository;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+builder.Services.AddTransient<InitialData>();
+builder.Services.AddScoped<IClothingRepository,ClothingRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
