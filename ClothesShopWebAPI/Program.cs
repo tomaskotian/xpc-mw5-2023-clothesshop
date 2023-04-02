@@ -1,14 +1,17 @@
-using ClothesShop.DAL.Migrations;
-using ClothesShop.DAL.Entities;
 
-var InitialData = new InitialData();
-List<ClothingEntity> Data = InitialData.GetFakeClothingEntities(15);
+using ClothesShop.DAL.Interfaces;
+using ClothesShop.DAL.Migrations;
+using ClothesShop.DAL.Repository;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+builder.Services.AddTransient<InitialData>();
+builder.Services.AddScoped<IClothingRepository,ClothingRepository>();
+builder.Services.AddScoped<IShoesRepository, ShoesRepository>();
+builder.Services.AddScoped<IAccessoriesRepository, AccessoriesRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
