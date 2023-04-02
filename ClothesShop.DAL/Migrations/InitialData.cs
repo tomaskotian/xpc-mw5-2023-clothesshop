@@ -6,7 +6,13 @@ using ClothesShop.DAL.Entities;
 namespace ClothesShop.DAL.Migrations;
 public class InitialData : CommoditiesEntity
 {   
-    public static ICollection<CommoditiesEntity> GetCommoditiesEntities(int count)
+    public ICollection<CommoditiesEntity> Data;
+    public InitialData() 
+    {
+        Data = GetCommoditiesEntities(15);
+    }
+
+    private static ICollection<CommoditiesEntity> GetCommoditiesEntities(int count)
     {
         ICollection<CommoditiesEntity> DataCollection = new List<CommoditiesEntity>();
         var Clothing = GetFakeClothingEntities(count);

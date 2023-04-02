@@ -3,7 +3,7 @@ using ClothesShop.DAL.Entities;
 
 //Create fake data
 var InitialData = new InitialData();
-ICollection<CommoditiesEntity> Data = InitialData.GetCommoditiesEntities(15);
+
 
 var builder = WebApplication.CreateBuilder(args);
 
