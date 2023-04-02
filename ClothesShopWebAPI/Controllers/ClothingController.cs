@@ -1,6 +1,5 @@
 ﻿using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
-using ClothesShop.DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClothesShop.DAL.Controllers

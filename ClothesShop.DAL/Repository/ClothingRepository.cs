@@ -15,7 +15,7 @@ namespace ClothesShop.DAL.Repository
 
         public List<ClothingEntity> GetAllClothing()
         {
-            return _data.Data.OfType<ClothingEntity>().ToList<ClothingEntity>();
+            return _data.Data.OfType<ClothingEntity>().ToList();
         }
     }
 }
