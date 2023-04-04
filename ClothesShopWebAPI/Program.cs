@@ -1,7 +1,9 @@
 
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Migrations;
+using ClothesShop.DAL.Database;
 using ClothesShop.DAL.Repository;
+
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddTransient<InitialData>();
+builder.Services.AddSingleton<IFakeDatabase, FakeDatabase>();
 builder.Services.AddScoped<IClothingRepository,ClothingRepository>();
 builder.Services.AddScoped<IShoesRepository, ShoesRepository>();
 builder.Services.AddScoped<IAccessoriesRepository, AccessoriesRepository>();

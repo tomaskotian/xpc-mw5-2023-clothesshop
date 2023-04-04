@@ -57,7 +57,7 @@ namespace ClothesShop.DAL.Controllers
         [Route("{id:guid}")]
         public IActionResult DeleteClothing([FromRoute] Guid id) 
         {
-            var clothing = _clothingRepository.FindClothing(id);
+            ClothingEntity clothing = _clothingRepository.FindClothingById(id);
 
             if (clothing == null)
                 return NotFound();
