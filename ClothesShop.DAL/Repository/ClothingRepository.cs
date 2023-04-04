@@ -17,5 +17,10 @@ namespace ClothesShop.DAL.Repository
         {
             return _data.Data.OfType<ClothingEntity>().ToList();
         }
+
+        public void AddClothing(ClothingEntity clothing)
+        {
+            _data.AddEntity(clothing);
+        }
     }
 }

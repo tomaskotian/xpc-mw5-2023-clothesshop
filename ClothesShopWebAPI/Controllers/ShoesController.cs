@@ -1,5 +1,6 @@
 ﻿using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
+using ClothesShop.DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClothesShopWebAPI.Controllers
@@ -22,6 +23,31 @@ namespace ClothesShopWebAPI.Controllers
             var shoes = _shoesRepository.GetAllShoes();
             if(!ModelState.IsValid) 
                 return BadRequest(ModelState);
+            return Ok(shoes);
+        }
+
+        [HttpPost]
+        public IActionResult AddShoes(AddShoesEntity addShoesEntity)
+        {
+            var shoes = new ShoesEntity()
+            {
+                Id = Guid.NewGuid(),
+                Name = addShoesEntity.Name,
+                Image = addShoesEntity.Image,
+                Description = addShoesEntity.Description,
+                Price = addShoesEntity.Price,
+                Weight = addShoesEntity.Weight,
+                Stock = addShoesEntity.Stock,
+                ManufacturerId = addShoesEntity.ManufacturerId,
+                Manufacturer = addShoesEntity.Manufacturer,
+                ReviewId = addShoesEntity.ReviewId,
+                ReviewEntity = addShoesEntity.ReviewEntity,
+                CategoryShoes = addShoesEntity.CategoryShoes,
+                SizeShoes = addShoesEntity.SizeShoes,
+                Sex = addShoesEntity.Sex,
+            };
+
+            _shoesRepository.AddShoes(shoes);
             return Ok(shoes);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Bogus;
 using ClothesShop.Common.Enums;
 using ClothesShop.DAL.Entities;
@@ -10,6 +11,11 @@ public class InitialData
     public InitialData() 
     {
         Data = GetCommoditiesEntities(15);
+    }
+
+    public void AddEntity(object entity)
+    {
+        Data.Add(entity);
     }
 
     private static List<object> GetCommoditiesEntities(int count)
