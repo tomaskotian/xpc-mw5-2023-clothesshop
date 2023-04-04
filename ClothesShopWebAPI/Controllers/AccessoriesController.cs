@@ -54,7 +54,7 @@ namespace ClothesShopWebAPI.Controllers
         [Route("{id:guid}")]
         public IActionResult DeleteAccessories([FromRoute] Guid id)
         {
-            var accessories = _accessoriesRepository.FindAccessories(id);
+            var accessories = _accessoriesRepository.FindAccessoriesById(id);
 
             if (accessories == null)
                 return NotFound();

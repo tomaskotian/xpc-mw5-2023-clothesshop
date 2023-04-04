@@ -5,9 +5,9 @@ namespace ClothesShop.DAL.Interfaces
 {
     public interface IAccessoriesRepository
     {
-        List<AccessoriesEntity> GetAllAccessories();
+        Task <List<AccessoriesEntity>> GetAllAccessories();
         void AddAccessories(AccessoriesEntity accessories);
         void RemoveAccessories(AccessoriesEntity accessories);
-        AccessoriesEntity FindAccessories(Guid id);
+        AccessoriesEntity FindAccessoriesById(Guid id);
     }
 }
