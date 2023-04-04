@@ -86,12 +86,14 @@ namespace ClothesShop.DAL.Database
 
         public ShoesEntity GetShoesById(Guid id)
         {
-            throw new NotImplementedException();
+            ShoesEntity shoes = Shoes.Where(c => c.Id == id).FirstOrDefault();
+            return shoes;
         }
 
         public AccessoriesEntity GetAccessoriesById(Guid id)
         {
-            throw new NotImplementedException();
+            AccessoriesEntity accessories = Accessories.Where(c => c.Id == id).FirstOrDefault();
+            return accessories;
         }
 
         private static List<ClothingEntity> GetFakeClothingEntities(int count)
