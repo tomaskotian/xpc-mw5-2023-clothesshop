@@ -7,5 +7,7 @@ namespace ClothesShop.DAL.Interfaces
     {
         List<AccessoriesEntity> GetAllAccessories();
         void AddAccessories(AccessoriesEntity accessories);
+        void RemoveAccessories(AccessoriesEntity accessories);
+        AccessoriesEntity FindAccessories(Guid id);
     }
 }

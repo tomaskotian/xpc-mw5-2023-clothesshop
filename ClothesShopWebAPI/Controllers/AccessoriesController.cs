@@ -50,5 +50,17 @@ namespace ClothesShopWebAPI.Controllers
             return Ok(accessories);
         }
 
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public IActionResult DeleteAccessories([FromRoute] Guid id)
+        {
+            var accessories = _accessoriesRepository.FindAccessories(id);
+
+            if (accessories == null)
+                return NotFound();
+
+            _accessoriesRepository.RemoveAccessories(accessories);
+            return Ok(accessories);
+        }
     }
 }
