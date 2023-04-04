@@ -52,5 +52,18 @@ namespace ClothesShop.DAL.Controllers
             _clothingRepository.AddClothing(clothing);
             return Ok(clothing);
         }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public IActionResult DeleteClothing([FromRoute] Guid id) 
+        {
+            var clothing = _clothingRepository.FindClothing(id);
+
+            if (clothing == null)
+                return NotFound();
+
+            _clothingRepository.RemoveClothing(clothing);
+            return Ok(clothing);
+        }
     }
 }
