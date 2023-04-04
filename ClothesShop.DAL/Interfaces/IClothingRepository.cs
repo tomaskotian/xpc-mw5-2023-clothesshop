@@ -6,5 +6,7 @@ namespace ClothesShop.DAL.Interfaces
     {
         List<ClothingEntity> GetAllClothing();
         void AddClothing(ClothingEntity clothing);
+        void RemoveClothing(ClothingEntity clothing);
+        ClothingEntity FindClothing(Guid id);
     }
 }

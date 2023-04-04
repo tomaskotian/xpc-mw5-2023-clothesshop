@@ -2,7 +2,6 @@
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Migrations;
 
-
 namespace ClothesShop.DAL.Repository
 {
     public class ClothingRepository : IClothingRepository
@@ -21,6 +20,17 @@ namespace ClothesShop.DAL.Repository
         public void AddClothing(ClothingEntity clothing)
         {
             _data.AddEntity(clothing);
+        }
+
+        public void RemoveClothing(ClothingEntity clothing)
+        {
+            _data.Data.Remove(clothing);
+        }
+
+        public ClothingEntity FindClothing(Guid id)
+        {
+            var clothing = _data.Data.OfType<ClothingEntity>().Where(c => c.Id == id).FirstOrDefault();
+            return clothing;
         }
     }
 }
