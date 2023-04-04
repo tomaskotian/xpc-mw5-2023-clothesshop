@@ -21,5 +21,16 @@ namespace ClothesShop.DAL.Repository
         {
             _data.AddEntity(shoes);
         }
+
+        public void RemoveShoes(ShoesEntity shoes)
+        {
+            _data.Data.Remove(shoes);
+        }
+
+        public ShoesEntity FindShoes(Guid id)
+        {
+            var shoes = _data.Data.OfType<ShoesEntity>().Where(c => c.Id == id).FirstOrDefault();
+            return shoes;
+        }
     }
 }
