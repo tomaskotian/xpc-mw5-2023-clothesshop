@@ -6,30 +6,31 @@ namespace ClothesShop.DAL.Repository
 {
     public class ShoesRepository : IShoesRepository
     {
-        private readonly InitialData _data;
-        public ShoesRepository(InitialData data)
+        private readonly IFakeDatabase _fakeDatabase;
+
+        public ShoesRepository(IFakeDatabase fakeDatabase)
         {
-            _data = data;
+            _fakeDatabase = fakeDatabase;
         }
 
-        public List<ShoesEntity> GetAllShoes()
+        public Task<List<ShoesEntity>> GetAllShoes()
         {
-            return _data.Data.OfType<ShoesEntity>().ToList();
+            return _fakeDatabase.GetAllShoes();
         }
 
         public void AddShoes(ShoesEntity shoes)
         {
-            _data.AddEntity(shoes);
+            _fakeDatabase.AddShoes(shoes);
         }
 
         public void RemoveShoes(ShoesEntity shoes)
         {
-            _data.Data.Remove(shoes);
+            _fakeDatabase.RemoveShoes(shoes);
         }
 
-        public ShoesEntity FindShoes(Guid id)
+        public ShoesEntity FindShoesById(Guid id)
         {
-            var shoes = _data.Data.OfType<ShoesEntity>().Where(c => c.Id == id).FirstOrDefault();
+            var shoes = _fakeDatabase.GetShoesById(id);
             return shoes;
         }
     }

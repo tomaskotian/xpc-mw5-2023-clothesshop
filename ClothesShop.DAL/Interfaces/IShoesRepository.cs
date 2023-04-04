@@ -4,9 +4,9 @@ namespace ClothesShop.DAL.Interfaces
 {
     public interface IShoesRepository
     {
-        List<ShoesEntity> GetAllShoes();
+        Task<List<ShoesEntity>> GetAllShoes();
         public void AddShoes(ShoesEntity shoes);
         void RemoveShoes(ShoesEntity shoes);
-        ShoesEntity FindShoes(Guid id);
+        ShoesEntity FindShoesById(Guid id);
     }
 }

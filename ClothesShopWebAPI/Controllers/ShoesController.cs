@@ -55,7 +55,7 @@ namespace ClothesShopWebAPI.Controllers
         [Route("{id:guid}")]
         public IActionResult DeleteShoes([FromRoute] Guid id)
         {
-            var shoes = _shoesRepository.FindShoes(id);
+            var shoes = _shoesRepository.FindShoesById(id);
 
             if (shoes == null)
                 return NotFound();
