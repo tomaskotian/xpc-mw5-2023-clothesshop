@@ -1,5 +1,6 @@
 ﻿using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
+using ClothesShop.DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClothesShopWebAPI.Controllers
@@ -22,6 +23,30 @@ namespace ClothesShopWebAPI.Controllers
             var accessories = _accessoriesRepository.GetAllAccessories();
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+            return Ok(accessories);
+        }
+
+        [HttpPost]
+        public IActionResult AddAccessories(AddAccessoriesEntity addAccessoriesEntity)
+        {
+            var accessories = new AccessoriesEntity()
+            {
+                Id = Guid.NewGuid(),
+                Name = addAccessoriesEntity.Name,
+                Image = addAccessoriesEntity.Image,
+                Description = addAccessoriesEntity.Description,
+                Price = addAccessoriesEntity.Price,
+                Weight = addAccessoriesEntity.Weight,
+                Stock = addAccessoriesEntity.Stock,
+                ManufacturerId = addAccessoriesEntity.ManufacturerId,
+                Manufacturer = addAccessoriesEntity.Manufacturer,
+                ReviewId = addAccessoriesEntity.ReviewId,
+                ReviewEntity = addAccessoriesEntity.ReviewEntity,
+                CategoryAccessories = addAccessoriesEntity.CategoryAccessories,
+                Sex = addAccessoriesEntity.Sex,
+            };
+
+            _accessoriesRepository.AddAccessories(accessories);
             return Ok(accessories);
         }
 
