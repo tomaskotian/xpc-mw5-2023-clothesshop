@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddTransient<InitialData>();
+builder.Services.AddSingleton<InitialData>();
 builder.Services.AddScoped<IClothingRepository,ClothingRepository>();
 builder.Services.AddScoped<IShoesRepository, ShoesRepository>();
 builder.Services.AddScoped<IAccessoriesRepository, AccessoriesRepository>();
