@@ -1,5 +1,6 @@
 ﻿using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
+using ClothesShop.DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClothesShop.DAL.Controllers
@@ -24,6 +25,18 @@ namespace ClothesShop.DAL.Controllers
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
+            return Ok(clothing);
+        }
+
+        [HttpGet]
+        [Route("{id:guid}")]
+        public IActionResult GetClothingById([FromRoute] Guid id)
+        {
+            var clothing = _clothingRepository.FindClothing(id);
+
+            if (clothing == null)
+                return NotFound();
 
             return Ok(clothing);
         }

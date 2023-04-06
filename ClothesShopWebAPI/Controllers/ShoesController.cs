@@ -26,6 +26,18 @@ namespace ClothesShopWebAPI.Controllers
             return Ok(shoes);
         }
 
+        [HttpGet]
+        [Route("{id:guid}")]
+        public IActionResult GetShoesById([FromRoute] Guid id)
+        {
+            var shoes = _shoesRepository.FindShoes(id);
+
+            if (shoes == null)
+                return NotFound();
+
+            return Ok(shoes);
+        }
+
         [HttpPost]
         public IActionResult AddShoes(AddShoesEntity addShoesEntity)
         {
