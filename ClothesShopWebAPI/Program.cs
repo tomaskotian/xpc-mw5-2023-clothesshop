@@ -2,9 +2,10 @@
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Migrations;
 using ClothesShop.DAL.Repository;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var data = new InitialData();
 
 // Add services to the container.
 builder.Services.AddControllers();
