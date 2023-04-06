@@ -5,12 +5,14 @@
 - Tomáš Pečinka tomas-pecinka@seznam.cz
 ## TODO
 - Tomáš Kotian
-  - [x] API GET
-  - [x] Bogus
+  - [x] API GetAll
+  - [ ] Finish Bogus
+  - [ ] Manufacturer Comodities
 - Ľudovít Sčensný
   - [x] Data Model
   - [x] Initialization Bogus
+  - [ ] README 
 - Tomáš Pečinka
-  - [ ] API
-  - [ ] GitHub Wiki
+  - [ ] API Delete, Post, GetBy Id
+  - [ ] API GetAllFiltered
 ## variant of the project A
