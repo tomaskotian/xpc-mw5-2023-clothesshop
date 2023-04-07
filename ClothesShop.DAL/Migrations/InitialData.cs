@@ -51,17 +51,16 @@ public class InitialData
         var Faker = new Faker();
         var Lorem = new Bogus.DataSets.Lorem("en");
         var ClothingFaker = new Faker<ClothingEntity>()
-            .RuleFor(c => c.Id, Guid.NewGuid())
+            .RuleFor(c => c.Id, f => Guid.NewGuid())
             .RuleFor(c => c.Name, f => f.Commerce.ProductName())
             .RuleFor(c => c.Image, f => f.Internet.Url())
             .RuleFor(c => c.Description, f => f.Commerce.ProductDescription())
             .RuleFor(c => c.Price, f => f.Random.Float(10, 100))
             .RuleFor(c => c.Weight, f => f.Random.Float(0.5f, 3.0f))
             .RuleFor(c => c.Stock, f => f.Random.UInt(10, 100))
-            .RuleFor(c => c.ManufacturerId, Guid.NewGuid())
+            .RuleFor(c => c.ManufacturerId, f => Guid.NewGuid())
             .RuleFor(c => c.Manufacturer, f => f.Random.CollectionItem(Manufacturers))
-            .RuleFor(c => c.ReviewId,
-                Guid.NewGuid())
+            .RuleFor(c => c.ReviewId, f => Guid.NewGuid())
             .RuleFor(c => c.ReviewEntity, f => new ReviewEntity 
             { 
                 Id = f.Random.Guid(),
@@ -82,16 +81,16 @@ public class InitialData
         var Faker = new Faker();
         var Lorem = new Bogus.DataSets.Lorem("en");
         var ClothingFaker = new Faker<AccessoriesEntity>()
-            .RuleFor(c => c.Id, Guid.NewGuid())
+            .RuleFor(c => c.Id, f => Guid.NewGuid())
             .RuleFor(c => c.Name, f => f.Commerce.ProductName())
             .RuleFor(c => c.Image, f => f.Internet.Url())
             .RuleFor(c => c.Description, f => f.Commerce.ProductDescription())
             .RuleFor(c => c.Price, f => f.Random.Float(10, 100))
             .RuleFor(c => c.Weight, f => f.Random.Float(0.5f, 3.0f))
             .RuleFor(c => c.Stock, f => f.Random.UInt(10, 100))
-            .RuleFor(c => c.ManufacturerId, Guid.NewGuid())
+            .RuleFor(c => c.ManufacturerId, f => Guid.NewGuid())
             .RuleFor(c => c.Manufacturer, f => f.Random.CollectionItem(Manufacturers))
-            .RuleFor(c => c.ReviewId, Guid.NewGuid())
+            .RuleFor(c => c.ReviewId, f => Guid.NewGuid())
             .RuleFor(c => c.ReviewEntity, f => new ReviewEntity
             {
                 Id = f.Random.Guid(),
@@ -111,16 +110,16 @@ public class InitialData
         var Faker = new Faker();
         var Lorem = new Bogus.DataSets.Lorem("en");
         var ClothingFaker = new Faker<ShoesEntity>()
-            .RuleFor(c => c.Id, Guid.NewGuid())
+            .RuleFor(c => c.Id, f => Guid.NewGuid())
             .RuleFor(c => c.Name, f => f.Commerce.ProductName())
             .RuleFor(c => c.Image, f => f.Internet.Url())
             .RuleFor(c => c.Description, f => f.Commerce.ProductDescription())
             .RuleFor(c => c.Price, f => f.Random.Float(10, 100))
             .RuleFor(c => c.Weight, f => f.Random.Float(0.5f, 3.0f))
             .RuleFor(c => c.Stock, f => f.Random.UInt(10, 100))
-            .RuleFor(c => c.ManufacturerId, Guid.NewGuid())
+            .RuleFor(c => c.ManufacturerId, f => Guid.NewGuid())
             .RuleFor(c => c.Manufacturer, f => f.Random.CollectionItem(Manufacturers))
-            .RuleFor(c => c.ReviewId, Guid.NewGuid())
+            .RuleFor(c => c.ReviewId, f => Guid.NewGuid())
             .RuleFor(c => c.ReviewEntity, f => new ReviewEntity
             {
                 Id = f.Random.Guid(),

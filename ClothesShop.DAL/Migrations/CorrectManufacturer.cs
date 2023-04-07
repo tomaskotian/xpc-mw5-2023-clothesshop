@@ -27,6 +27,12 @@ namespace ClothesShop.DAL.Migrations
             }
         }
 
+        public static void DeleteComodities(IClothes comodity, InitialData data)
+        {
+            var OriginalComodity = data.Data.OfType<IClothes>().Where(c => ((c.Manufacturer.Name == comodity.Manufacturer.Name) && (c.Name != comodity.Name))).FirstOrDefault();
+            OriginalComodity.Manufacturer.Commodities.Remove(comodity);
+        }
+
         public static void GetCorrectManufacturerBogus(List<object> data) 
         {
             var manufacturers = FindManufacturers(data);

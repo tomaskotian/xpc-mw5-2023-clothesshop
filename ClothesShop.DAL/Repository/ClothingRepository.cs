@@ -25,6 +25,7 @@ namespace ClothesShop.DAL.Repository
 
         public void RemoveClothing(ClothingEntity clothing)
         {
+            CorrectManufacturer.DeleteComodities(clothing, _data);
             _data.Data.Remove(clothing);
         }
 
