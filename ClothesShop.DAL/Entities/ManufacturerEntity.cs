@@ -1,5 +1,4 @@
-﻿using System;
-using ClothesShop.Common.Enums;
+﻿using ClothesShop.Common.Enums;
 
 namespace ClothesShop.DAL.Entities
 {
@@ -10,6 +9,6 @@ namespace ClothesShop.DAL.Entities
         public string Description { get; set; }
         public string Logo { get; set; }
         public Origin Origin { get; set; }
-        public ICollection<CommoditiesEntity> Commodities { get; init; } = new List<CommoditiesEntity>();
+        public List<object> Commodities { get; set; } = new List<object>();
     }
 }
