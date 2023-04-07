@@ -9,7 +9,7 @@ public class InitialData
     public InitialData() 
     {
         
-        Data = GetCommoditiesEntities(15);
+        Data = GetCommoditiesEntities(3);
         
     }
 

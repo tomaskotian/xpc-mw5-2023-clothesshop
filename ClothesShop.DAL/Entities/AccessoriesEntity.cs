@@ -1,5 +1,4 @@
-﻿using System;
-using ClothesShop.Common.Enums;
+﻿using ClothesShop.Common.Enums;
 
 namespace ClothesShop.DAL.Entities
 {

@@ -1,5 +1,4 @@
 ﻿using ClothesShop.DAL.Entities;
-using ClothesShop.DAL.Interfaces;
 
 namespace ClothesShop.DAL.Migrations
 {
@@ -27,8 +26,6 @@ namespace ClothesShop.DAL.Migrations
                 comodity.Manufacturer = OriginalComodity.Manufacturer;
             }
         }
-
-
 
         public static void GetCorrectManufacturerBogus(List<object> data) 
         {

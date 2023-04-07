@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using ClothesShop.Common.Enums;
+﻿using ClothesShop.Common.Enums;
 
 namespace ClothesShop.DAL.Entities
 {
@@ -12,8 +9,6 @@ namespace ClothesShop.DAL.Entities
         public string Description { get; set; }
         public string Logo { get; set; }
         public Origin Origin { get; set; }
-        //[JsonIgnore]
-        //[IgnoreDataMember]
         public List<object> Commodities { get; set; } = new List<object>();
     }
 }

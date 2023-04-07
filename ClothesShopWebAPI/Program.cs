@@ -1,4 +1,3 @@
-
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Migrations;
 using ClothesShop.DAL.Repository;
@@ -8,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers().AddJsonOptions(x =>
-   x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-;
+x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles); //Set ReferenceHandler ignore loop in comodities, for depth 2 Commodity.Manufacturer = Null 
 builder.Services.AddSingleton<InitialData>();
 builder.Services.AddScoped<IClothingRepository,ClothingRepository>();
 builder.Services.AddScoped<IShoesRepository, ShoesRepository>();
