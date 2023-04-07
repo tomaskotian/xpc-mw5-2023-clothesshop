@@ -6,6 +6,8 @@ using ClothesShop.DAL.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 var data = new InitialData();
+CorrectManufacturer.GetCorrectManufacturerBogus(data);
+
 
 // Add services to the container.
 builder.Services.AddControllers();
