@@ -1,40 +1,70 @@
 ﻿using ClothesShop.DAL.Entities;
+using ClothesShop.DAL.Interfaces;
 
 namespace ClothesShop.DAL.Migrations
 {
     public static class CorrectManufacturer
     {
-        public static void GetCorrectManufacturerBogus(InitialData data) 
+        public static void AddComodities(IClothes comodity, InitialData data) 
         {
-            List<string> manufacturers = new List<string>();
-
-            //find all manufacturer names
-            foreach(ClothingEntity comodity in data.Data.OfType<ClothingEntity>())
+            var OriginalComodity = data.Data.OfType<IClothes>().Where(c => ((c.Manufacturer.Name == comodity.Manufacturer.Name) && (c.Name != comodity.Name))).FirstOrDefault();
+            if (OriginalComodity == null)
             {
-                manufacturers.Add(comodity.Manufacturer.Name);     
+                var manufacturer = new ManufacturerEntity()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = comodity.Manufacturer.Name,
+                    Description = comodity.Manufacturer.Description,
+                    Logo = comodity.Manufacturer.Logo,
+                    Origin = comodity.Manufacturer.Origin,
+                    Commodities = new List<object>{comodity}
+                };
+                comodity.Manufacturer = manufacturer;   
             }
-            manufacturers = manufacturers.Distinct().ToList();
+            else
+            {
+                OriginalComodity.Manufacturer.Commodities.Add(comodity);
+                comodity.Manufacturer = OriginalComodity.Manufacturer;
+            }
+        }
 
-            UpadteCommodities<ClothingEntity>(manufacturers, data);
-            UpadteCommodities<ShoesEntity>(manufacturers, data);
-            UpadteCommodities<AccessoriesEntity>(manufacturers, data);
+
+
+        public static void GetCorrectManufacturerBogus(List<object> data) 
+        {
+            var manufacturers = FindManufacturers(data);
+
+            UpadteCommodities<IClothes>(manufacturers, data);
 
         }  
-        private static void UpadteCommodities<T>(List<string> manufacturers, InitialData data) where T : IClothes
+
+        private static void UpadteCommodities<T>(List<string> manufacturers, List<object> data) where T : IClothes
         {   
             foreach (string manufacturer in manufacturers)
             {
                 List<object> clothings = new List<object>();
-                foreach (T comodity in data.Data.OfType<T>().Where(c => c.Manufacturer.Name == manufacturer))
+                foreach (T comodity in data.OfType<T>().Where(c => c.Manufacturer.Name == manufacturer))
                 {
                     clothings.Add(comodity);
                 }
-                var ManufacturerObject = data.Data.OfType<T>().Where(c => c.Manufacturer.Name == manufacturer).FirstOrDefault();
+                var ManufacturerObject = data.OfType<T>().Where(c => c.Manufacturer.Name == manufacturer).FirstOrDefault();
                 foreach (object clothing in clothings)
                 {
                     ManufacturerObject.Manufacturer.Commodities.Add(clothing);
                 }
             }
+        }
+
+        private static List<string> FindManufacturers(List<object> data) 
+        {
+            List<string> manufacturers = new List<string>();
+
+            foreach (IClothes comodity in data)
+            {
+                manufacturers.Add(comodity.Manufacturer.Name);
+            }
+            manufacturers = manufacturers.Distinct().ToList();
+            return manufacturers;
         }
     }
 }

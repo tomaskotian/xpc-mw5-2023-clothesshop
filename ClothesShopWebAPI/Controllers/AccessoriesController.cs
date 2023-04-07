@@ -1,7 +1,8 @@
 ﻿using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
-using ClothesShop.DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace ClothesShopWebAPI.Controllers
 {

@@ -2,15 +2,14 @@
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Migrations;
 using ClothesShop.DAL.Repository;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var data = new InitialData();
-CorrectManufacturer.GetCorrectManufacturerBogus(data);
-
-
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+   x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+;
 builder.Services.AddSingleton<InitialData>();
 builder.Services.AddScoped<IClothingRepository,ClothingRepository>();
 builder.Services.AddScoped<IShoesRepository, ShoesRepository>();

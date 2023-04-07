@@ -10,6 +10,7 @@ public class InitialData
     {
         
         Data = GetCommoditiesEntities(15);
+        
     }
 
     public void AddEntity(object entity)
@@ -40,6 +41,7 @@ public class InitialData
             data.Add(accessorie);
         }
 
+        CorrectManufacturer.GetCorrectManufacturerBogus(data);
         return data;
     }
 

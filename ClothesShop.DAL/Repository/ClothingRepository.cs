@@ -20,6 +20,7 @@ namespace ClothesShop.DAL.Repository
         public void AddClothing(ClothingEntity clothing)
         {
             _data.AddEntity(clothing);
+            //CorrectManufacturer.AddComodities(clothing, _data);
         }
 
         public void RemoveClothing(ClothingEntity clothing)
