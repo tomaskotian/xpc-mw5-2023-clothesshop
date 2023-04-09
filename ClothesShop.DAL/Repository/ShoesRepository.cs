@@ -18,19 +18,19 @@ namespace ClothesShop.DAL.Repository
             return _data.Data.OfType<ShoesEntity>().ToList();
         }
 
-        public void AddShoes(ShoesEntity shoes)
+        public void AddShoe(ShoesEntity shoes)
         {
             _data.AddEntity(shoes);
             CorrectManufacturer.AddComodities(shoes, _data);
         }
 
-        public void RemoveShoes(ShoesEntity shoes)
+        public void RemoveShoe(ShoesEntity shoes)
         {
             CorrectManufacturer.DeleteComodities(shoes, _data);
             _data.Data.Remove(shoes);
         }
 
-        public ShoesEntity FindShoes(Guid id)
+        public ShoesEntity GetShoeById(Guid id)
         {
             var shoes = _data.Data.OfType<ShoesEntity>().Where(c => c.Id == id).FirstOrDefault();
             return shoes;

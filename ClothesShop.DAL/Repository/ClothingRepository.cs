@@ -30,7 +30,7 @@ namespace ClothesShop.DAL.Repository
             _data.Data.Remove(clothing);
         }
 
-        public ClothingEntity FindClothing(Guid id)
+        public ClothingEntity GetClothingById(Guid id)
         {
             var clothing = _data.Data.OfType<ClothingEntity>().Where(c => c.Id == id).FirstOrDefault();
             return clothing;

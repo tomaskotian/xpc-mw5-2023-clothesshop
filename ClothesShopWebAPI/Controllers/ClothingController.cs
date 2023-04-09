@@ -34,7 +34,19 @@ namespace ClothesShop.DAL.Controllers
         [Route("{id:guid}")]
         public IActionResult GetClothingById([FromRoute] Guid id)
         {
-            var clothing = _clothingRepository.FindClothing(id);
+            var clothing = _clothingRepository.GetClothingById(id);
+
+            if (clothing == null)
+                return NotFound();
+
+            return Ok(clothing);
+        }
+
+        [HttpGet]
+        [Route("details")]
+        public IActionResult GetClothingFiltered(string manufacturer_name = default, SizeClothing size = default, Sex sex = default, string sort = default)
+        {
+            var clothing = _clothingRepository.GetClothingFiltered(manufacturer_name, size, sex, sort);
 
             if (clothing == null)
                 return NotFound();
@@ -71,24 +83,12 @@ namespace ClothesShop.DAL.Controllers
         [Route("{id:guid}")]
         public IActionResult DeleteClothing([FromRoute] Guid id) 
         {
-            var clothing = _clothingRepository.FindClothing(id);
+            var clothing = _clothingRepository.GetClothingById(id);
 
             if (clothing == null)
                 return NotFound();
 
             _clothingRepository.RemoveClothing(clothing);
-            return Ok(clothing);
-        }
-
-        [HttpGet]
-        [Route("details")]
-        public IActionResult GetClothingFiltered(string manufacturer_name = default, SizeClothing size = default, Sex sex = default, string sort = default)
-        {
-            var clothing = _clothingRepository.GetClothingFiltered(manufacturer_name, size, sex, sort);
-
-            if (clothing == null)
-                return NotFound();
-
             return Ok(clothing);
         }
     }
