@@ -1,4 +1,5 @@
-﻿using ClothesShop.DAL.Entities;
+﻿using ClothesShop.Common.Enums;
+using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -28,9 +29,9 @@ namespace ClothesShopWebAPI.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
-        public IActionResult GetShoesById([FromRoute] Guid id)
+        public IActionResult GetShoeById([FromRoute] Guid id)
         {
-            var shoes = _shoesRepository.FindShoes(id);
+            var shoes = _shoesRepository.GetShoeById(id);
 
             if (shoes == null)
                 return NotFound();
@@ -38,8 +39,21 @@ namespace ClothesShopWebAPI.Controllers
             return Ok(shoes);
         }
 
+        [HttpGet]
+        [Route("details")]
+        public IActionResult GetShoesFiltered(string manufacturer_name = default, SizeShoes size = default, Sex sex = default, string sort = default)
+        {
+            var shoes = _shoesRepository.GetShoesFiltered(manufacturer_name, size, sex, sort);
+
+            if (shoes == null)
+                return NotFound();
+
+            return Ok(shoes);
+        }
+
+
         [HttpPost]
-        public IActionResult AddShoes(AddShoesEntity addShoesEntity)
+        public IActionResult AddShoe(AddShoesEntity addShoesEntity)
         {
             var shoes = new ShoesEntity()
             {
@@ -59,20 +73,20 @@ namespace ClothesShopWebAPI.Controllers
                 Sex = addShoesEntity.Sex,
             };
 
-            _shoesRepository.AddShoes(shoes);
+            _shoesRepository.AddShoe(shoes);
             return Ok(shoes);
         }
 
         [HttpDelete]
         [Route("{id:guid}")]
-        public IActionResult DeleteShoes([FromRoute] Guid id)
+        public IActionResult DeleteShoe([FromRoute] Guid id)
         {
-            var shoes = _shoesRepository.FindShoes(id);
+            var shoes = _shoesRepository.GetShoeById(id);
 
             if (shoes == null)
                 return NotFound();
 
-            _shoesRepository.RemoveShoes(shoes);
+            _shoesRepository.RemoveShoe(shoes);
             return Ok(shoes);
         }
 

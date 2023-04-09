@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using ClothesShop.DAL.Migrations;
+using ClothesShop.Common.Enums;
+using ClothesShop.DAL.Repository;
 
 namespace ClothesShopWebAPI.Controllers
 {
@@ -28,8 +30,32 @@ namespace ClothesShopWebAPI.Controllers
             return Ok(accessories);
         }
 
+        [HttpGet]
+        [Route("{id:guid}")]
+        public IActionResult GetAccessoryById([FromRoute] Guid id)
+        {
+            var accessories = _accessoriesRepository.GetAccessoryById(id);
+
+            if (accessories == null)
+                return NotFound();
+
+            return Ok(accessories);
+        }
+
+        [HttpGet]
+        [Route("details")]
+        public IActionResult GetAccessoriesFiltered(string manufacturer_name = default, Sex sex = default, string sort = default)
+        {
+            var accessories = _accessoriesRepository.GetAccessoriesFiltered(manufacturer_name, sex, sort);
+
+            if (accessories == null)
+                return NotFound();
+
+            return Ok(accessories);
+        }
+
         [HttpPost]
-        public IActionResult AddAccessories(AddAccessoriesEntity addAccessoriesEntity)
+        public IActionResult AddAccessory(AddAccessoriesEntity addAccessoriesEntity)
         {
             var accessories = new AccessoriesEntity()
             {
@@ -48,32 +74,20 @@ namespace ClothesShopWebAPI.Controllers
                 Sex = addAccessoriesEntity.Sex,
             };
 
-            _accessoriesRepository.AddAccessories(accessories);
+            _accessoriesRepository.AddAccessory(accessories);
             return Ok(accessories);
         }
 
         [HttpDelete]
         [Route("{id:guid}")]
-        public IActionResult DeleteAccessories([FromRoute] Guid id)
+        public IActionResult DeleteAccessory([FromRoute] Guid id)
         {
-            var accessories = _accessoriesRepository.FindAccessories(id);
+            var accessories = _accessoriesRepository.GetAccessoryById(id);
 
             if (accessories == null)
                 return NotFound();
 
-            _accessoriesRepository.RemoveAccessories(accessories);
-            return Ok(accessories);
-        }
-
-        [HttpGet]
-        [Route("{id:guid}")]
-        public IActionResult GetAccessoriesById([FromRoute] Guid id)
-        {
-            var accessories = _accessoriesRepository.FindAccessories(id);
-
-            if (accessories == null)
-                return NotFound();
-
+            _accessoriesRepository.RemoveAccessory(accessories);
             return Ok(accessories);
         }
     }

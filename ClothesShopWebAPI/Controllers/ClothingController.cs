@@ -1,4 +1,5 @@
-﻿using ClothesShop.DAL.Entities;
+﻿using ClothesShop.Common.Enums;
+using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,19 @@ namespace ClothesShop.DAL.Controllers
         [Route("{id:guid}")]
         public IActionResult GetClothingById([FromRoute] Guid id)
         {
-            var clothing = _clothingRepository.FindClothing(id);
+            var clothing = _clothingRepository.GetClothingById(id);
+
+            if (clothing == null)
+                return NotFound();
+
+            return Ok(clothing);
+        }
+
+        [HttpGet]
+        [Route("details")]
+        public IActionResult GetClothingFiltered(string manufacturer_name = default, SizeClothing size = default, Sex sex = default, string sort = default)
+        {
+            var clothing = _clothingRepository.GetClothingFiltered(manufacturer_name, size, sex, sort);
 
             if (clothing == null)
                 return NotFound();
@@ -70,7 +83,7 @@ namespace ClothesShop.DAL.Controllers
         [Route("{id:guid}")]
         public IActionResult DeleteClothing([FromRoute] Guid id) 
         {
-            var clothing = _clothingRepository.FindClothing(id);
+            var clothing = _clothingRepository.GetClothingById(id);
 
             if (clothing == null)
                 return NotFound();
