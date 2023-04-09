@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using ClothesShop.DAL.Migrations;
+using ClothesShop.Common.Enums;
+using ClothesShop.DAL.Repository;
 
 namespace ClothesShopWebAPI.Controllers
 {
@@ -70,6 +72,18 @@ namespace ClothesShopWebAPI.Controllers
         public IActionResult GetAccessoriesById([FromRoute] Guid id)
         {
             var accessories = _accessoriesRepository.FindAccessories(id);
+
+            if (accessories == null)
+                return NotFound();
+
+            return Ok(accessories);
+        }
+
+        [HttpGet]
+        [Route("details")]
+        public IActionResult GetAccessoriesFiltered(string manufacturer_name = default, Sex sex = default, string sort = default)
+        {
+            var accessories = _accessoriesRepository.GetAccessoriesFiltered(manufacturer_name, sex, sort);
 
             if (accessories == null)
                 return NotFound();
