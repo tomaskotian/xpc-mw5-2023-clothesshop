@@ -1,4 +1,5 @@
-﻿using ClothesShop.DAL.Entities;
+﻿using ClothesShop.Common.Enums;
+using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,19 @@ namespace ClothesShopWebAPI.Controllers
 
             return Ok(shoes);
         }
+
+        [HttpGet]
+        [Route("details")]
+        public IActionResult GetShoesFiltered(string manufacturer_name = default, SizeShoes size = default, Sex sex = default, string sort = default)
+        {
+            var shoes = _shoesRepository.GetShoesFiltered(manufacturer_name, size, sex, sort);
+
+            if (shoes == null)
+                return NotFound();
+
+            return Ok(shoes);
+        }
+
 
         [HttpPost]
         public IActionResult AddShoes(AddShoesEntity addShoesEntity)
