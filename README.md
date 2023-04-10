@@ -6,8 +6,8 @@
 ## TODO
 - Tomáš Kotian
   - [x] API GetAll
-  - [ ] Finish Bogus
-  - [ ] Manufacturer Comodities
+  - [x] Finish Bogus
+  - [x] Manufacturer Comodities
 - Ľudovít Sčensný
   - [x] Data Model
   - [x] Initialization Bogus
