@@ -1,6 +1,6 @@
 # xpc-mw5-2023-clothesshop
 ## Members of the team:
-| **Member**     | **VUT ID**| **E-mail**               |
+| Member          | VUT ID    | E-mail                  |
 |:---------------:|:---------:|:-----------------------:|
 | Tomáš Kotian    |  209404   | 11tomas16@gmail.com     |
 | Ľudovít Sčensný |  220854   | ludsce002@gmail.com     |
