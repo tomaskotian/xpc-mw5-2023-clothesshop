@@ -13,6 +13,6 @@
   - [x] Initialization Bogus
   - [ ] README 
 - Tomáš Pečinka
-  - [ ] API Delete, Post, GetBy Id
-  - [ ] API GetAllFiltered
+  - [x] API Delete, Post, GetBy Id
+  - [x] API GetAllFiltered
 ## variant of the project A
