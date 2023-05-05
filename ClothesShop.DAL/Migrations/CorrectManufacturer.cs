@@ -16,7 +16,7 @@ namespace ClothesShop.DAL.Migrations
                     Description = comodity.Manufacturer.Description,
                     Logo = comodity.Manufacturer.Logo,
                     Origin = comodity.Manufacturer.Origin,
-                    Commodities = new List<object>{comodity}
+                    Commodities = new List<IClothes>{comodity}
                 };
                 comodity.Manufacturer = manufacturer;   
             }
@@ -33,7 +33,7 @@ namespace ClothesShop.DAL.Migrations
             OriginalComodity.Manufacturer.Commodities.Remove(comodity);
         }
 
-        public static void GetCorrectManufacturerBogus(List<object> data) 
+        public static void GetCorrectManufacturerBogus(List<IClothes> data) 
         {
             var manufacturers = FindManufacturers(data);
 
@@ -41,24 +41,24 @@ namespace ClothesShop.DAL.Migrations
 
         }  
 
-        private static void UpadteCommodities<T>(List<string> manufacturers, List<object> data) where T : IClothes
+        private static void UpadteCommodities<T>(List<string> manufacturers, List<IClothes> data) where T : IClothes
         {   
             foreach (string manufacturer in manufacturers)
             {
-                List<object> clothings = new List<object>();
+                List<IClothes> clothings = new List<IClothes>();
                 foreach (T comodity in data.OfType<T>().Where(c => c.Manufacturer.Name == manufacturer))
                 {
                     clothings.Add(comodity);
                 }
                 var ManufacturerObject = data.OfType<T>().Where(c => c.Manufacturer.Name == manufacturer).FirstOrDefault();
-                foreach (object clothing in clothings)
+                foreach (IClothes clothing in clothings)
                 {
                     ManufacturerObject.Manufacturer.Commodities.Add(clothing);
                 }
             }
         }
 
-        private static List<string> FindManufacturers(List<object> data) 
+        private static List<string> FindManufacturers(List<IClothes> data) 
         {
             List<string> manufacturers = new List<string>();
 

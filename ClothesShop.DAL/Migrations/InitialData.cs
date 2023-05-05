@@ -5,7 +5,7 @@ using ClothesShop.DAL.Entities;
 namespace ClothesShop.DAL.Migrations;
 public class InitialData 
 {   
-    public List<object> Data;
+    public List<IClothes> Data;
     public InitialData() 
     {
         
@@ -13,14 +13,14 @@ public class InitialData
         
     }
 
-    public void AddEntity(object entity)
+    public void AddEntity(IClothes entity)
     {
         Data.Add(entity);
     }
 
-    private static List<object> GetCommoditiesEntities(int count)
+    private static List<IClothes> GetCommoditiesEntities(int count)
     {
-        List<object> data = new List<object>();
+        List<IClothes> data = new List<IClothes>();
         ICollection<ManufacturerEntity> Manufacturers = GetFakeManufacturers(5);
         var Clothing = GetFakeClothingEntities(count, Manufacturers);
         var Shoes = GetFakeShoesEntities(count, Manufacturers);
