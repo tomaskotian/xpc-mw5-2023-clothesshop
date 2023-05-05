@@ -9,6 +9,6 @@ namespace ClothesShop.DAL.Entities
         public string Description { get; set; }
         public string Logo { get; set; }
         public Origin Origin { get; set; }
-        public List<object> Commodities { get; set; } = new List<object>();
+        public List<IClothes> Commodities { get; set; } = new List<IClothes>();
     }
 }
