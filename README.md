@@ -52,5 +52,5 @@ Open Visual Studio Installer->Modify and install
   - .NET deskop development
 
 SQL Server 2022 Express
- [SQL Server] (https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+ [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
