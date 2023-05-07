@@ -15,30 +15,28 @@ namespace ClothesShop.DAL.Repository
 
         public List<ClothingEntity> GetAllClothing()
         {
-            return _data.Data.OfType<ClothingEntity>().ToList();
+            return _data.ClothingData.OfType<ClothingEntity>().ToList();
         }
 
         public void AddClothing(ClothingEntity clothing)
         {
-            _data.AddEntity(clothing);
-            CorrectManufacturer.AddComodities(clothing, _data);
+            _data.AddClothing(clothing);
         }
 
         public void RemoveClothing(ClothingEntity clothing)
         {
-            CorrectManufacturer.DeleteComodities(clothing, _data);
-            _data.Data.Remove(clothing);
+            _data.ClothingData.Remove(clothing);
         }
 
         public ClothingEntity GetClothingById(Guid id)
         {
-            var clothing = _data.Data.OfType<ClothingEntity>().Where(c => c.Id == id).FirstOrDefault();
+            var clothing = _data.ClothingData.OfType<ClothingEntity>().Where(c => c.Id == id).FirstOrDefault();
             return clothing;
         }
 
         public List<ClothingEntity> GetClothingFiltered(string manufacturer_name, SizeClothing size, Sex sex, string sort)
         {
-            var clothing = _data.Data.OfType<ClothingEntity>();
+            var clothing = _data.ClothingData.OfType<ClothingEntity>();
             if (manufacturer_name != default)
                 clothing = clothing.Where(s => s.Manufacturer.Name == manufacturer_name);
             if (size != default)

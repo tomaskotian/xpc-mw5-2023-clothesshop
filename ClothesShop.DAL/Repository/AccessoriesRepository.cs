@@ -16,30 +16,28 @@ namespace ClothesShop.DAL.Repository
 
         public List<AccessoriesEntity> GetAllAccessories()
         {
-            return _data.Data.OfType<AccessoriesEntity>().ToList();
+            return _data.AccessoriesData.OfType<AccessoriesEntity>().ToList();
         }
 
         public void AddAccessory(AccessoriesEntity accessories)
         {
-            _data.AddEntity(accessories);
-            CorrectManufacturer.AddComodities(accessories, _data);
+            _data.AddAccessories(accessories);
         }
 
         public void RemoveAccessory(AccessoriesEntity accessories)
         {
-            CorrectManufacturer.DeleteComodities(accessories, _data);
-            _data.Data.Remove(accessories);
+            _data.AccessoriesData.Remove(accessories);
         }
 
         public AccessoriesEntity GetAccessoryById(Guid id)
         {
-            var accessories = _data.Data.OfType<AccessoriesEntity>().Where(c => c.Id == id).FirstOrDefault();
+            var accessories = _data.AccessoriesData.OfType<AccessoriesEntity>().Where(c => c.Id == id).FirstOrDefault();
             return accessories;
         }
 
         public List<AccessoriesEntity> GetAccessoriesFiltered(string manufacturer_name, Sex sex, string sort)
         {
-            var accessories = _data.Data.OfType<AccessoriesEntity>();
+            var accessories = _data.AccessoriesData.OfType<AccessoriesEntity>();
             if (manufacturer_name != default)
                 accessories = accessories.Where(s => s.Manufacturer.Name == manufacturer_name);
             if (sex != default)

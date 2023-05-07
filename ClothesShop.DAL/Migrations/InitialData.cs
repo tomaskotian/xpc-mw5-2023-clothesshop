@@ -5,47 +5,36 @@ using ClothesShop.DAL.Entities;
 namespace ClothesShop.DAL.Migrations;
 public class InitialData 
 {   
-    public List<IClothes> Data;
+    public List<ShoesEntity> ShoesData { get; set; }
+    public List<AccessoriesEntity> AccessoriesData  { get; set; }
+    public List<ClothingEntity> ClothingData { get; set; }
+
     public InitialData() 
     {
-        
-        Data = GetCommoditiesEntities(3);
-        
-    }
+        int  number_products = 5;
+        ICollection<ManufacturerEntity> Manufacturers = GetFakeManufacturers(3);
 
-    public void AddEntity(IClothes entity)
+        ShoesData = GetFakeShoesEntities(number_products, Manufacturers);
+        AccessoriesData = GetFakeAccessoriesEntities(number_products, Manufacturers);
+        ClothingData = GetFakeClothingEntities(number_products, Manufacturers);
+    }  
+
+    public void AddShoes(ShoesEntity entity)
     {
-        Data.Add(entity);
+        ShoesData.Add(entity);
     }
 
-    private static List<IClothes> GetCommoditiesEntities(int count)
+    public void AddClothing(ClothingEntity entity)
     {
-        List<IClothes> data = new List<IClothes>();
-        ICollection<ManufacturerEntity> Manufacturers = GetFakeManufacturers(5);
-        var Clothing = GetFakeClothingEntities(count, Manufacturers);
-        var Shoes = GetFakeShoesEntities(count, Manufacturers);
-        var Accessories = GetFakeAccessoriesEntities(count, Manufacturers);
-
-        foreach (ClothingEntity clothes in Clothing)
-        {
-            data.Add(clothes);
-        }
-
-        foreach (ShoesEntity shoes in Shoes)
-        {
-            data.Add(shoes);
-        }
-
-        foreach (AccessoriesEntity accessorie in Accessories)
-        {
-            data.Add(accessorie);
-        }
-
-        CorrectManufacturer.GetCorrectManufacturerBogus(data);
-        return data;
+        ClothingData.Add(entity);
     }
 
-    private static ICollection<ClothingEntity> GetFakeClothingEntities(int count, ICollection<ManufacturerEntity> Manufacturers)
+    public void AddAccessories(AccessoriesEntity entity)
+    {
+        AccessoriesData.Add(entity);
+    }
+
+    private static List<ClothingEntity> GetFakeClothingEntities(int count, ICollection<ManufacturerEntity> Manufacturers)
     {
         Randomizer.Seed = new Random(895344);
         var Faker = new Faker();
@@ -75,7 +64,7 @@ public class InitialData
         return ClothingFaker.Generate(count);
     }
 
-    private static ICollection<AccessoriesEntity> GetFakeAccessoriesEntities(int count, ICollection<ManufacturerEntity> Manufacturers)
+    private static List<AccessoriesEntity> GetFakeAccessoriesEntities(int count, ICollection<ManufacturerEntity> Manufacturers)
     {
         Randomizer.Seed = new Random(895333);
         var Faker = new Faker();
@@ -104,7 +93,7 @@ public class InitialData
         return ClothingFaker.Generate(count);
     }
 
-    private static ICollection<ShoesEntity> GetFakeShoesEntities(int count, ICollection<ManufacturerEntity> Manufacturers)
+    private static List<ShoesEntity> GetFakeShoesEntities(int count, ICollection<ManufacturerEntity> Manufacturers)
     {
         Randomizer.Seed = new Random(623423);
         var Faker = new Faker();
