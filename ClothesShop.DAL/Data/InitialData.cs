@@ -2,7 +2,7 @@
 using ClothesShop.Common.Enums;
 using ClothesShop.DAL.Entities;
 
-namespace ClothesShop.DAL.Migrations;
+namespace ClothesShop.DAL.Data;
 public class InitialData 
 {   
     public List<ShoesEntity> ShoesData { get; set; }

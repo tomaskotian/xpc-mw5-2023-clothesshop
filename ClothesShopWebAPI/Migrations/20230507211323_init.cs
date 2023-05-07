@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ClothesShopEF.Migrations
+namespace ClothesShopWebAPI.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration

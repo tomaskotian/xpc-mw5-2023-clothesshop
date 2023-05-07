@@ -1,7 +1,7 @@
 ﻿using ClothesShop.Common.Enums;
 using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
-using ClothesShop.DAL.Migrations;
+using ClothesShop.DAL.Data;
 
 namespace ClothesShop.DAL.Repository
 {

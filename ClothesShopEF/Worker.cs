@@ -1,6 +1,6 @@
-using ClothesShop.DAL.Migrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using ClothesShop.DAL.Data;
 
 namespace ClothesShopEF;
 
