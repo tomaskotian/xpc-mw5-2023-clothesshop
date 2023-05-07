@@ -15,7 +15,7 @@ namespace ClothesShop.DAL.Repository
 
         public List<ClothingEntity> GetAllClothing()
         {
-            return _data.ClothingData.OfType<ClothingEntity>().ToList();
+            return _data.ClothingData;
         }
 
         public void AddClothing(ClothingEntity clothing)
@@ -30,7 +30,7 @@ namespace ClothesShop.DAL.Repository
 
         public ClothingEntity GetClothingById(Guid id)
         {
-            var clothing = _data.ClothingData.OfType<ClothingEntity>().Where(c => c.Id == id).FirstOrDefault();
+            var clothing = _data.ClothingData.Where(c => c.Id == id).FirstOrDefault();
             return clothing;
         }
 

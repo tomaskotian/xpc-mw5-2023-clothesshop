@@ -16,7 +16,7 @@ namespace ClothesShop.DAL.Repository
 
         public List<AccessoriesEntity> GetAllAccessories()
         {
-            return _data.AccessoriesData.OfType<AccessoriesEntity>().ToList();
+            return _data.AccessoriesData;
         }
 
         public void AddAccessory(AccessoriesEntity accessories)
@@ -31,7 +31,7 @@ namespace ClothesShop.DAL.Repository
 
         public AccessoriesEntity GetAccessoryById(Guid id)
         {
-            var accessories = _data.AccessoriesData.OfType<AccessoriesEntity>().Where(c => c.Id == id).FirstOrDefault();
+            var accessories = _data.AccessoriesData.Where(c => c.Id == id).FirstOrDefault();
             return accessories;
         }
 
