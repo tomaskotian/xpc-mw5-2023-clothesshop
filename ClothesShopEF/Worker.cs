@@ -1,3 +1,7 @@
+using ClothesShop.DAL.Migrations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+
 namespace ClothesShopEF;
 
 public class Worker : BackgroundService
@@ -13,8 +17,15 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        InitialData data = new InitialData();
+        await clothesDb.ShoesEntities.AddRangeAsync(data.ShoesData);
+        await clothesDb.ClothingEntities.AddRangeAsync(data.ClothingData);
+        await clothesDb.AccessoriesEntities.AddRangeAsync(data.AccessoriesData);
+
+        await clothesDb.SaveChangesAsync();
+
         while (!stoppingToken.IsCancellationRequested)
-        {
+        { 
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             await Task.Delay(1000, stoppingToken);
         }
