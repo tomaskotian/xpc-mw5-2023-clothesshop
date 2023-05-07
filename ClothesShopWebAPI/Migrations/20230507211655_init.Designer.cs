@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClothesShopWebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230507211323_init")]
+    [Migration("20230507211655_init")]
     partial class init
     {
         /// <inheritdoc />
