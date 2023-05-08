@@ -1,11 +1,8 @@
 ﻿using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using ClothesShop.DAL.Migrations;
 using ClothesShop.Common.Enums;
-using ClothesShop.DAL.Repository;
+
 
 namespace ClothesShopWebAPI.Controllers
 {

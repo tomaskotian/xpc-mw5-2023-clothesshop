@@ -9,11 +9,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3" />
   </ItemGroup>
 
   <ItemGroup>
   	<ProjectReference Include="..\ClothesShop.Common\ClothesShop.Common.csproj" />
-	<ProjectReference Include="..\ClothesShop.DAL\ClothesShop.DAL.csproj" />
+  	<ProjectReference Include="..\ClothesShop.DAL\ClothesShop.DAL.csproj" />
   </ItemGroup>
 
 
