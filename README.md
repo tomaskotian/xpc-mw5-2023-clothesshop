@@ -50,7 +50,8 @@ The .NET 7 Framework is used in this project.
 Open Visual Studio Installer->Modify and install  
   - ASP.NET and web development
   - .NET deskop development
-
-SQL Server 2022 Express
+### Server
+- SQL Server 2022 Express
  [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
-
+- SQL Server Management Studio
+ [SSMS](https://learn.microsoft.com/cs-CZ/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
