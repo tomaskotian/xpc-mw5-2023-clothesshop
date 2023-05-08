@@ -55,3 +55,8 @@ Open Visual Studio Installer->Modify and install
  [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - SQL Server Management Studio
  [SSMS](https://learn.microsoft.com/cs-CZ/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
+ ### How to connect to server
+ - in VisualStudio search for SQL Server Object Explorer 
+ - add SQL Server
+ - right click on added server->Properties copy Connection string
+ - copied connecion string replace by DefaulConnection in ClothesShopWebAPI appsettings.josn
