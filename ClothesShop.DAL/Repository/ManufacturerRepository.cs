@@ -18,6 +18,11 @@ namespace ClothesShop.DAL.Repository
             _data = data;
         }
 
+        public void UpdateManufacturer(ManufacturerEntity manufacturer)
+        {
+            _data.ManufacturersData.Add(manufacturer);
+        }
+
         public void AddManufacturer(ManufacturerEntity manufacturer)
         {
             _data.ManufacturersData.Add(manufacturer);

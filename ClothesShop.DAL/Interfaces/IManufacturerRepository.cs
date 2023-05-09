@@ -13,5 +13,6 @@ namespace ClothesShop.DAL.Interfaces
         void AddManufacturer(ManufacturerEntity manufacturer);
         ManufacturerEntity GetManufacturerById(Guid id);
         void RemoveManufacturer(ManufacturerEntity manufacturer);
+        public void UpdateManufacturer(ManufacturerEntity manufacturer);
     }
 }
