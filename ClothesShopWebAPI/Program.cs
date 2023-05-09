@@ -17,6 +17,8 @@ builder.Services.AddSingleton<InitialData>();
 builder.Services.AddScoped<IClothingRepository,ClothingRepository>();
 builder.Services.AddScoped<IShoesRepository, ShoesRepository>();
 builder.Services.AddScoped<IAccessoriesRepository, AccessoriesRepository>();
+builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
