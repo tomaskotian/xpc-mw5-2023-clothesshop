@@ -65,3 +65,10 @@ Open Visual Studio Installer->Modify and install
  - add SQL Server
  - right click on added server->Properties copy Connection string
  - copied connecion string replace by DefaulConnection in ClothesShopWebAPI appsettings.josn
+
+Pre-configure database through the Package Manager Console:
+
+    dotnet ef database update 0
+    dotnet ef migrations remove
+    dotnet ef migrations add "init"
+    dotnet ef database update
