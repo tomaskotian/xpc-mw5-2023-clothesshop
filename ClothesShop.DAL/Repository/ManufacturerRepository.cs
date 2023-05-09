@@ -9,12 +9,24 @@ using System.Threading.Tasks;
 
 namespace ClothesShop.DAL.Repository
 {
-    internal class ManufacturerRepository : IManufacturerRepository
+    public class ManufacturerRepository : IManufacturerRepository
     {
         private readonly DataContext _data;
+
+        public ManufacturerRepository(DataContext data)
+        {
+            _data = data;
+        }
+
         public void AddManufacturer(ManufacturerEntity manufacturer)
         {
-            _data.Add(manufacturer);
+            _data.ManufacturersData.Add(manufacturer);
+            _data.SaveChanges();
+        }
+
+        public List<ManufacturerEntity> GetAllManufacturers()
+        {
+            return _data.ManufacturersData.ToList();
         }
 
         public ManufacturerEntity GetManufacturerById(Guid id)
@@ -26,6 +38,7 @@ namespace ClothesShop.DAL.Repository
         public void RemoveManufacturer(ManufacturerEntity manufacturer)
         {
             _data.ManufacturersData.Remove(manufacturer);
+            _data.SaveChanges();
         }
     }
 }

@@ -9,12 +9,24 @@ using System.Threading.Tasks;
 
 namespace ClothesShop.DAL.Repository
 {
-    internal class ReviewRepository : IReviewRepository
+    public class ReviewRepository : IReviewRepository
     {
         private readonly DataContext _data;
+
+        public ReviewRepository(DataContext data)
+        {
+            _data = data;
+        }
+
         public void AddReview(ReviewEntity review)
         {
-            _data.Add(review);
+            _data.ReviewsData.Add(review);
+            _data.SaveChanges();
+        }
+
+        public List<ReviewEntity> GetAllReviews()
+        {
+            return _data.ReviewsData.ToList();
         }
 
         public ReviewEntity GetReviewById(Guid id)
@@ -26,6 +38,7 @@ namespace ClothesShop.DAL.Repository
         public void RemoveReview(ReviewEntity review)
         {
             _data.ReviewsData.Remove(review);
+            _data.SaveChanges();
         }
     }
 }

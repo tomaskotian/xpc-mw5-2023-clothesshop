@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace ClothesShop.DAL.Interfaces
 {
-    internal interface IReviewRepository
+    public interface IReviewRepository
     {
+        List<ReviewEntity> GetAllReviews();
         void AddReview(ReviewEntity review);
         ReviewEntity GetReviewById(Guid id);
         void RemoveReview(ReviewEntity review);
