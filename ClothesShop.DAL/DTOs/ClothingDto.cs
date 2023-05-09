@@ -12,9 +12,7 @@ namespace ClothesShop.DAL.DTOs
         public float Weight { get; set; }
         public uint Stock { get; set; }
         public Guid ManufacturerId { get; set; }
-        public ManufacturerEntity Manufacturer { get; set; }
         public Guid ReviewId { get; set; }
-        public ReviewEntity ReviewEntity { get; set; }
         public CategoryClothing CategoryClothing { get; set; }
         public SizeClothing SizeClothing { get; set; }
         public Sex Sex { get; set; }

@@ -20,7 +20,7 @@ namespace ClothesShop.DAL.Repository
 
         public void UpdateManufacturer(ManufacturerEntity manufacturer)
         {
-            _data.ManufacturersData.Add(manufacturer);
+            _data.ManufacturersData.Update(manufacturer);
         }
 
         public void AddManufacturer(ManufacturerEntity manufacturer)
