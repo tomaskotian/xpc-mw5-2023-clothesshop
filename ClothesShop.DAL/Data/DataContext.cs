@@ -5,9 +5,12 @@ namespace ClothesShop.DAL.Data
 {
     public class DataContext : DbContext
     {
-        public DbSet<ShoesEntity> ShoesEntities { get; set; }
-        public DbSet<ClothingEntity> ClothingEntities { get; set; }
-        public DbSet<AccessoriesEntity> AccessoriesEntities { get; set; }
+        public DbSet<ShoesEntity> ShoesData { get; set; }
+        public DbSet<ClothingEntity> ClothingData { get; set; }
+        public DbSet<AccessoriesEntity> AccessoriesData { get; set; }
+        public DbSet<ManufacturerEntity> ManufacturersData { get; set; }
+        public DbSet<ReviewEntity> ReviewsData { get; set; }
+
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
