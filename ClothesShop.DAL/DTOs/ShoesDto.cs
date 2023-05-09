@@ -1,9 +1,14 @@
 ﻿using ClothesShop.Common.Enums;
+using ClothesShop.DAL.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace ClothesShop.DAL.Entities
+namespace ClothesShop.DAL.DTOs
 {
-    public class AddAccessoriesEntity
+    public class ShoesDto
     {
         public string Name { get; set; }
         public string Image { get; set; }
@@ -15,7 +20,8 @@ namespace ClothesShop.DAL.Entities
         public ManufacturerEntity Manufacturer { get; set; }
         public Guid ReviewId { get; set; }
         public ReviewEntity ReviewEntity { get; set; }
-        public CategoryAccessories CategoryAccessories { get; set; }
+        public CategoryShoes CategoryShoes { get; set; }
+        public SizeShoes SizeShoes { get; set; }
         public Sex Sex { get; set; }
     }
 }

@@ -7,20 +7,20 @@ namespace ClothesShop.DAL.Repository
 {
     public class ClothingRepository : IClothingRepository
     {
-        private readonly InitialData _data;   
-        public ClothingRepository(InitialData data) 
+        private readonly DataContext _data;   
+        public ClothingRepository(DataContext data) 
         {
             _data = data;
         }
 
         public List<ClothingEntity> GetAllClothing()
         {
-            return _data.ClothingData;
+            return _data.ClothingData.ToList();
         }
 
         public void AddClothing(ClothingEntity clothing)
         {
-            _data.AddClothing(clothing);
+            _data.ClothingData.Add(clothing);
         }
 
         public void RemoveClothing(ClothingEntity clothing)

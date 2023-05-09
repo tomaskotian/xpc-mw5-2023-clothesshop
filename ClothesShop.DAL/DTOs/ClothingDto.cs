@@ -1,7 +1,9 @@
 ﻿using ClothesShop.Common.Enums;
-namespace ClothesShop.DAL.Entities
+using ClothesShop.DAL.Entities;
+
+namespace ClothesShop.DAL.DTOs
 {
-    public class AddClothingEntity
+    public class ClothingDto
     {
         public string Name { get; set; }
         public string Image { get; set; }

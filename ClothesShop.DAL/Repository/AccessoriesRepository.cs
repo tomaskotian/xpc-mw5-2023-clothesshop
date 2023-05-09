@@ -7,26 +7,28 @@ namespace ClothesShop.DAL.Repository
 {
     public class AccessoriesRepository : IAccessoriesRepository
     {
-        private readonly InitialData _data;
+        private readonly DataContext _data;
 
-        public AccessoriesRepository(InitialData data) 
+        public AccessoriesRepository(DataContext data) 
         {
             _data = data;
         }
 
         public List<AccessoriesEntity> GetAllAccessories()
         {
-            return _data.AccessoriesData;
+            return _data.AccessoriesData.ToList();
         }
 
         public void AddAccessory(AccessoriesEntity accessories)
         {
-            _data.AddAccessories(accessories);
+            _data.AccessoriesData.Add(accessories);
+            _data.SaveChanges();
         }
 
         public void RemoveAccessory(AccessoriesEntity accessories)
         {
             _data.AccessoriesData.Remove(accessories);
+            _data.SaveChanges();
         }
 
         public AccessoriesEntity GetAccessoryById(Guid id)

@@ -2,7 +2,8 @@
 using ClothesShop.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using ClothesShop.Common.Enums;
-
+using ClothesShop.DAL.DTOs;
+using ClothesShop.DAL.Repository;
 
 namespace ClothesShopWebAPI.Controllers
 {
@@ -11,14 +12,19 @@ namespace ClothesShopWebAPI.Controllers
     public class AccessoriesController : Controller
     {
         private readonly IAccessoriesRepository _accessoriesRepository;
+        private readonly IManufacturerRepository _manufacturerRepository;
+        private readonly IReviewRepository _reviewRepository;
 
-        public AccessoriesController(IAccessoriesRepository accessoriesReposiory)
+        public AccessoriesController(IAccessoriesRepository accessoriesReposiory, IManufacturerRepository manufacturerRepository, IReviewRepository reviewRepository)
         {
             _accessoriesRepository = accessoriesReposiory;
+            _manufacturerRepository = manufacturerRepository;
+            _reviewRepository = reviewRepository;
         }
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<AccessoriesEntity>))]
+        [ProducesResponseType(400)]
         public IActionResult GetAllAccessories()
         {
             var accessories = _accessoriesRepository.GetAllAccessories();
@@ -52,26 +58,42 @@ namespace ClothesShopWebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAccessory(AddAccessoriesEntity addAccessoriesEntity)
+        public IActionResult AddAccessory(AccessoriesDto accessoriesDto)
         {
+            var manufacturer = _manufacturerRepository.GetManufacturerById(accessoriesDto.ManufacturerId);
+            if (manufacturer == null)
+            {
+                return BadRequest();
+            }
+
+            var review = _reviewRepository.GetReviewById(accessoriesDto.ReviewId);
+            if (review == null)
+            {
+                return BadRequest();
+            }
+
             var accessories = new AccessoriesEntity()
             {
                 Id = Guid.NewGuid(),
-                Name = addAccessoriesEntity.Name,
-                Image = addAccessoriesEntity.Image,
-                Description = addAccessoriesEntity.Description,
-                Price = addAccessoriesEntity.Price,
-                Weight = addAccessoriesEntity.Weight,
-                Stock = addAccessoriesEntity.Stock,
-                ManufacturerId = addAccessoriesEntity.ManufacturerId,
-                Manufacturer = addAccessoriesEntity.Manufacturer,
-                ReviewId = addAccessoriesEntity.ReviewId,
-                ReviewEntity = addAccessoriesEntity.ReviewEntity,
-                CategoryAccessories = addAccessoriesEntity.CategoryAccessories,
-                Sex = addAccessoriesEntity.Sex,
+                Name = accessoriesDto.Name,
+                Image = accessoriesDto.Image,
+                Description = accessoriesDto.Description,
+                Price = accessoriesDto.Price,
+                Weight = accessoriesDto.Weight,
+                Stock = accessoriesDto.Stock,
+                ManufacturerId = accessoriesDto.ManufacturerId,
+                Manufacturer = manufacturer,
+                ReviewId = accessoriesDto.ReviewId,
+                ReviewEntity = review,
+                CategoryAccessories = accessoriesDto.CategoryAccessories,
+                Sex = accessoriesDto.Sex,
             };
 
+            manufacturer.AccessoriesCommodities.Add(accessories);
+            _manufacturerRepository.UpdateManufacturer(manufacturer);
+
             _accessoriesRepository.AddAccessory(accessories);
+
             return Ok(accessories);
         }
 

@@ -7,25 +7,27 @@ namespace ClothesShop.DAL.Repository
 {
     public class ShoesRepository : IShoesRepository
     {
-        private readonly InitialData _data;
-        public ShoesRepository(InitialData data)
+        private readonly DataContext _data;
+        public ShoesRepository(DataContext data)
         {
             _data = data;
         }
 
         public List<ShoesEntity> GetAllShoes()
         {
-            return _data.ShoesData;
+            return _data.ShoesData.ToList();
         }
 
         public void AddShoe(ShoesEntity shoes)
         {
-            _data.AddShoes(shoes);
+            _data.ShoesData.Add(shoes);
+            _data.SaveChanges();
         }
 
         public void RemoveShoe(ShoesEntity shoes)
         {
             _data.ShoesData.Remove(shoes);
+            _data.SaveChanges();
         }
 
         public ShoesEntity GetShoeById(Guid id)
