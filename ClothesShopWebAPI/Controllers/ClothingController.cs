@@ -26,9 +26,9 @@ namespace ClothesShop.DAL.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<ClothingEntity>))]
         [ProducesResponseType(400)]
-        public IActionResult GetAllClothing()
+        public async Task<IActionResult> GetAllClothing()
         {
-            var clothing = _clothingRepository.GetAllClothing();
+            var clothing = await _clothingRepository.GetAllClothing();
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -38,9 +38,9 @@ namespace ClothesShop.DAL.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
-        public IActionResult GetClothingById([FromRoute] Guid id)
+        public async Task<IActionResult> GetClothingById([FromRoute] Guid id)
         {
-            var clothing = _clothingRepository.GetClothingById(id);
+            var clothing = await _clothingRepository.GetClothingById(id);
 
             if (clothing == null)
                 return NotFound();
@@ -50,9 +50,9 @@ namespace ClothesShop.DAL.Controllers
 
         [HttpGet]
         [Route("details")]
-        public IActionResult GetClothingFiltered(string manufacturer_name = default, SizeClothing size = default, Sex sex = default, string sort = default)
+        public async Task<IActionResult> GetClothingFiltered(string manufacturer_name = default, SizeClothing size = default, Sex sex = default, string sort = default)
         {
-            var clothing = _clothingRepository.GetClothingFiltered(manufacturer_name, size, sex, sort);
+            var clothing = await _clothingRepository.GetClothingFiltered(manufacturer_name, size, sex, sort);
 
             if (clothing == null)
                 return NotFound();
@@ -61,16 +61,12 @@ namespace ClothesShop.DAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddClothing(ClothingDto clothingDto)
+        public async Task<IActionResult> AddClothing(ClothingDto clothingDto)
         {
-            var manufacturer = _manufacturerRepository.GetManufacturerById(clothingDto.ManufacturerId);
-            if (manufacturer == null)
-            {
-                return BadRequest();
-            }
+            var manufacturer = await _manufacturerRepository.GetManufacturerById(clothingDto.ManufacturerId);
+            var review = await _reviewRepository.GetReviewById(clothingDto.ReviewId);
 
-            var review = _reviewRepository.GetReviewById(clothingDto.ReviewId);
-            if (review == null)
+            if (manufacturer == null || review == null || !ModelState.IsValid)
             {
                 return BadRequest();
             }
@@ -102,9 +98,9 @@ namespace ClothesShop.DAL.Controllers
 
         [HttpDelete]
         [Route("{id:guid}")]
-        public IActionResult DeleteClothing([FromRoute] Guid id) 
+        public async Task<IActionResult> DeleteClothing([FromRoute] Guid id) 
         {
-            var clothing = _clothingRepository.GetClothingById(id);
+            var clothing = await _clothingRepository.GetClothingById(id);
 
             if (clothing == null)
                 return NotFound();

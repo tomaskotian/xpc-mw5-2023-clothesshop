@@ -25,9 +25,9 @@ namespace ClothesShopWebAPI.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<ShoesEntity>))]
         [ProducesResponseType(400)]
-        public IActionResult GetAllShoes() 
+        public async Task<IActionResult> GetAllShoes() 
         {
-            var shoes = _shoesRepository.GetAllShoes();
+            var shoes = await _shoesRepository.GetAllShoes();
             if(!ModelState.IsValid) 
                 return BadRequest(ModelState);
             return Ok(shoes);
@@ -35,9 +35,9 @@ namespace ClothesShopWebAPI.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
-        public IActionResult GetShoeById([FromRoute] Guid id)
+        public async Task<IActionResult> GetShoeById([FromRoute] Guid id)
         {
-            var shoes = _shoesRepository.GetShoeById(id);
+            var shoes = await _shoesRepository.GetShoeById(id);
 
             if (shoes == null)
                 return NotFound();
@@ -47,9 +47,9 @@ namespace ClothesShopWebAPI.Controllers
 
         [HttpGet]
         [Route("details")]
-        public IActionResult GetShoesFiltered(string manufacturer_name = default, SizeShoes size = default, Sex sex = default, string sort = default)
+        public async Task<IActionResult> GetShoesFiltered(string manufacturer_name = default, SizeShoes size = default, Sex sex = default, string sort = default)
         {
-            var shoes = _shoesRepository.GetShoesFiltered(manufacturer_name, size, sex, sort);
+            var shoes = await _shoesRepository.GetShoesFiltered(manufacturer_name, size, sex, sort);
 
             if (shoes == null)
                 return NotFound();
@@ -59,16 +59,12 @@ namespace ClothesShopWebAPI.Controllers
 
 
         [HttpPost]
-        public IActionResult AddShoe(ShoesDto shoesDto)
+        public async Task<IActionResult> AddShoe(ShoesDto shoesDto)
         {
-            var manufacturer = _manufacturerRepository.GetManufacturerById(shoesDto.ManufacturerId);
-            if (manufacturer == null)
-            {
-                return BadRequest();
-            }
+            var manufacturer = await _manufacturerRepository.GetManufacturerById(shoesDto.ManufacturerId);
+            var review = await _reviewRepository.GetReviewById(shoesDto.ReviewId);
 
-            var review = _reviewRepository.GetReviewById(shoesDto.ReviewId);
-            if (review == null)
+            if (manufacturer == null || review == null || !ModelState.IsValid)
             {
                 return BadRequest();
             }
@@ -100,9 +96,9 @@ namespace ClothesShopWebAPI.Controllers
 
         [HttpDelete]
         [Route("{id:guid}")]
-        public IActionResult DeleteShoe([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteShoe([FromRoute] Guid id)
         {
-            var shoes = _shoesRepository.GetShoeById(id);
+            var shoes = await _shoesRepository.GetShoeById(id);
 
             if (shoes == null)
                 return NotFound();

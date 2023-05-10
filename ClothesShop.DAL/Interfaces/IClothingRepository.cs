@@ -5,10 +5,10 @@ namespace ClothesShop.DAL.Interfaces
 {
     public interface IClothingRepository
     {
-        List<ClothingEntity> GetAllClothing();
+        Task<List<ClothingEntity>> GetAllClothing();
         void AddClothing(ClothingEntity clothing);
         void RemoveClothing(ClothingEntity clothing);
-        ClothingEntity GetClothingById(Guid id);
-        List<ClothingEntity> GetClothingFiltered(string manufacturer_name, SizeClothing size, Sex sex, string sort);
+        Task<ClothingEntity> GetClothingById(Guid id);
+        Task<List<ClothingEntity>> GetClothingFiltered(string manufacturer_name, SizeClothing size, Sex sex, string sort);
     }
 }

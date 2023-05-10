@@ -1,6 +1,7 @@
 ﻿using ClothesShop.DAL.Data;
 using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace ClothesShop.DAL.Repository
         public void UpdateManufacturer(ManufacturerEntity manufacturer)
         {
             _data.ManufacturersData.Update(manufacturer);
+            _data.SaveChanges();
         }
 
         public void AddManufacturer(ManufacturerEntity manufacturer)
@@ -29,15 +31,20 @@ namespace ClothesShop.DAL.Repository
             _data.SaveChanges();
         }
 
-        public List<ManufacturerEntity> GetAllManufacturers()
+        public async Task<List<ManufacturerEntity>> GetAllManufacturers()
         {
-            return _data.ManufacturersData.ToList();
+            return await _data.ManufacturersData.ToListAsync();
         }
 
-        public ManufacturerEntity GetManufacturerById(Guid id)
+        public async Task<ManufacturerEntity> GetManufacturerById(Guid id)
         {
-            var manufacturer = _data.ManufacturersData.Where(c => c.Id == id).FirstOrDefault();
-            return manufacturer;
+            var manufacturer = _data.ManufacturersData
+                                            .Include(m => m.AccessoriesCommodities)
+                                            .Include(m => m.ClothingCommodities)
+                                            .Include(m => m.ShoesCommodities)
+                                            .Where(m => m.Id == id)
+                                            .FirstOrDefaultAsync();
+            return await manufacturer;
         }
 
         public void RemoveManufacturer(ManufacturerEntity manufacturer)

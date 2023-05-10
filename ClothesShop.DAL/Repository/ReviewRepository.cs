@@ -1,6 +1,7 @@
 ﻿using ClothesShop.DAL.Data;
 using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,15 +25,14 @@ namespace ClothesShop.DAL.Repository
             _data.SaveChanges();
         }
 
-        public List<ReviewEntity> GetAllReviews()
+        public async Task<List<ReviewEntity>> GetAllReviews()
         {
-            return _data.ReviewsData.ToList();
+            return await _data.ReviewsData.ToListAsync();
         }
 
-        public ReviewEntity GetReviewById(Guid id)
+        public async Task<ReviewEntity> GetReviewById(Guid id)
         {
-            var review = _data.ReviewsData.Where(c => c.Id == id).FirstOrDefault();
-            return review;
+            return _data.ReviewsData.Where(c => c.Id == id).FirstOrDefault(); ;
         }
 
         public void RemoveReview(ReviewEntity review)

@@ -2,6 +2,7 @@
 using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClothesShop.DAL.Repository
 {
@@ -13,9 +14,9 @@ namespace ClothesShop.DAL.Repository
             _data = data;
         }
 
-        public List<ClothingEntity> GetAllClothing()
+        public async Task<List<ClothingEntity>> GetAllClothing()
         {
-            return _data.ClothingData.ToList();
+            return await _data.ClothingData.ToListAsync();
         }
 
         public void AddClothing(ClothingEntity clothing)
@@ -28,13 +29,12 @@ namespace ClothesShop.DAL.Repository
             _data.ClothingData.Remove(clothing);
         }
 
-        public ClothingEntity GetClothingById(Guid id)
+        public async Task<ClothingEntity> GetClothingById(Guid id)
         {
-            var clothing = _data.ClothingData.Where(c => c.Id == id).FirstOrDefault();
-            return clothing;
+            return await _data.ClothingData.Where(c => c.Id == id).FirstOrDefaultAsync();
         }
 
-        public List<ClothingEntity> GetClothingFiltered(string manufacturer_name, SizeClothing size, Sex sex, string sort)
+        public async Task<List<ClothingEntity>> GetClothingFiltered(string manufacturer_name, SizeClothing size, Sex sex, string sort)
         {
             var clothing = _data.ClothingData.OfType<ClothingEntity>();
             if (manufacturer_name != default)
@@ -46,7 +46,7 @@ namespace ClothesShop.DAL.Repository
             if (sort == "ByPrice")
                 clothing = clothing.OrderBy(s => s.Price);
 
-            return clothing.ToList();
+            return await clothing.ToListAsync();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ClothesShopWebAPI.Controllers
         private readonly IManufacturerRepository _manufacturerRepository;
         private readonly IReviewRepository _reviewRepository;
 
-        public AccessoriesController(IAccessoriesRepository accessoriesReposiory, IManufacturerRepository manufacturerRepository, IReviewRepository reviewRepository)
+        AccessoriesController(IAccessoriesRepository accessoriesReposiory, IManufacturerRepository manufacturerRepository, IReviewRepository reviewRepository)
         {
             _accessoriesRepository = accessoriesReposiory;
             _manufacturerRepository = manufacturerRepository;
@@ -25,9 +25,9 @@ namespace ClothesShopWebAPI.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<AccessoriesEntity>))]
         [ProducesResponseType(400)]
-        public IActionResult GetAllAccessories()
+        public async Task<IActionResult> GetAllAccessories()
         {
-            var accessories = _accessoriesRepository.GetAllAccessories();
+            var accessories = await _accessoriesRepository.GetAllAccessories();
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(accessories);
@@ -35,9 +35,9 @@ namespace ClothesShopWebAPI.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
-        public IActionResult GetAccessoryById([FromRoute] Guid id)
+        public async Task<IActionResult> GetAccessoryById([FromRoute] Guid id)
         {
-            var accessories = _accessoriesRepository.GetAccessoryById(id);
+            var accessories = await _accessoriesRepository.GetAccessoryById(id);
 
             if (accessories == null)
                 return NotFound();
@@ -47,9 +47,9 @@ namespace ClothesShopWebAPI.Controllers
 
         [HttpGet]
         [Route("details")]
-        public IActionResult GetAccessoriesFiltered(string manufacturer_name = default, Sex sex = default, string sort = default)
+        public async Task<IActionResult> GetAccessoriesFiltered(string manufacturer_name = default, Sex sex = default, string sort = default)
         {
-            var accessories = _accessoriesRepository.GetAccessoriesFiltered(manufacturer_name, sex, sort);
+            var accessories = await _accessoriesRepository.GetAccessoriesFiltered(manufacturer_name, sex, sort);
 
             if (accessories == null)
                 return NotFound();
@@ -58,16 +58,12 @@ namespace ClothesShopWebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAccessory(AccessoriesDto accessoriesDto)
+        public async Task<IActionResult> AddAccessory(AccessoriesDto accessoriesDto)
         {
-            var manufacturer = _manufacturerRepository.GetManufacturerById(accessoriesDto.ManufacturerId);
-            if (manufacturer == null)
-            {
-                return BadRequest();
-            }
+            var manufacturer = await _manufacturerRepository.GetManufacturerById(accessoriesDto.ManufacturerId);
+            var review = await _reviewRepository.GetReviewById(accessoriesDto.ReviewId);
 
-            var review = _reviewRepository.GetReviewById(accessoriesDto.ReviewId);
-            if (review == null)
+            if (manufacturer == null || review == null || !ModelState.IsValid)
             {
                 return BadRequest();
             }
@@ -90,7 +86,6 @@ namespace ClothesShopWebAPI.Controllers
             };
 
             manufacturer.AccessoriesCommodities.Add(accessories);
-            _manufacturerRepository.UpdateManufacturer(manufacturer);
 
             _accessoriesRepository.AddAccessory(accessories);
 
@@ -99,9 +94,9 @@ namespace ClothesShopWebAPI.Controllers
 
         [HttpDelete]
         [Route("{id:guid}")]
-        public IActionResult DeleteAccessory([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteAccessory([FromRoute] Guid id)
         {
-            var accessories = _accessoriesRepository.GetAccessoryById(id);
+            var accessories = await _accessoriesRepository.GetAccessoryById(id);
 
             if (accessories == null)
                 return NotFound();

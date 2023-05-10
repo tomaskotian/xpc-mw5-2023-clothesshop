@@ -2,6 +2,7 @@
 using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClothesShop.DAL.Repository
 {
@@ -14,9 +15,9 @@ namespace ClothesShop.DAL.Repository
             _data = data;
         }
 
-        public List<AccessoriesEntity> GetAllAccessories()
+        public async Task<List<AccessoriesEntity>> GetAllAccessories()
         {
-            return _data.AccessoriesData.ToList();
+            return await _data.AccessoriesData.ToListAsync();
         }
 
         public void AddAccessory(AccessoriesEntity accessories)
@@ -31,13 +32,12 @@ namespace ClothesShop.DAL.Repository
             _data.SaveChanges();
         }
 
-        public AccessoriesEntity GetAccessoryById(Guid id)
+        public async Task<AccessoriesEntity> GetAccessoryById(Guid id)
         {
-            var accessories = _data.AccessoriesData.Where(c => c.Id == id).FirstOrDefault();
-            return accessories;
+            return await _data.AccessoriesData.Include(i => i.Manufacturer).FirstOrDefaultAsync(a => a.Id == id); ;
         }
 
-        public List<AccessoriesEntity> GetAccessoriesFiltered(string manufacturer_name, Sex sex, string sort)
+        public async Task<List<AccessoriesEntity>> GetAccessoriesFiltered(string manufacturer_name, Sex sex, string sort)
         {
             var accessories = _data.AccessoriesData.OfType<AccessoriesEntity>();
             if (manufacturer_name != default)
@@ -47,7 +47,7 @@ namespace ClothesShop.DAL.Repository
             if (sort == "ByPrice")
                 accessories = accessories.OrderBy(s => s.Price);
 
-            return accessories.ToList();
+            return await accessories.ToListAsync();
         }
     }
 }

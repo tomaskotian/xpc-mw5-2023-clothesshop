@@ -19,16 +19,16 @@ namespace ClothesShopWebAPI.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<ReviewEntity>))]
         [ProducesResponseType(400)]
-        public IActionResult GetAllReviews()
+        public async Task<IActionResult> GetAllReviews()
         {
-            var reviews = _reviewRepository.GetAllReviews();
+            var reviews = await _reviewRepository.GetAllReviews();
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(reviews);
         }
 
         [HttpPost]
-        public IActionResult AddReview(ReviewDto reviewDto)
+        public async Task<IActionResult> AddReview(ReviewDto reviewDto)
         {
             var review = new ReviewEntity()
             {

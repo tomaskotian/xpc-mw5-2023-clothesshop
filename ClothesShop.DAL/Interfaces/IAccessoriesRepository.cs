@@ -6,10 +6,10 @@ namespace ClothesShop.DAL.Interfaces
 {
     public interface IAccessoriesRepository
     {
-        List<AccessoriesEntity> GetAllAccessories();
+        Task<List<AccessoriesEntity>> GetAllAccessories();
         void AddAccessory(AccessoriesEntity accessories);
         void RemoveAccessory(AccessoriesEntity accessories);
-        AccessoriesEntity GetAccessoryById(Guid id);
-        List<AccessoriesEntity> GetAccessoriesFiltered(string manufacturer_name, Sex sex, string sort);
+        Task<AccessoriesEntity> GetAccessoryById(Guid id);
+        Task<List<AccessoriesEntity>> GetAccessoriesFiltered(string manufacturer_name, Sex sex, string sort);
     }
 }

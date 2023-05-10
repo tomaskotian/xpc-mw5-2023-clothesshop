@@ -9,9 +9,9 @@ namespace ClothesShop.DAL.Interfaces
 {
     public interface IReviewRepository
     {
-        List<ReviewEntity> GetAllReviews();
+        Task<List<ReviewEntity>> GetAllReviews();
         void AddReview(ReviewEntity review);
-        ReviewEntity GetReviewById(Guid id);
+        Task<ReviewEntity> GetReviewById(Guid id);
         void RemoveReview(ReviewEntity review);
     }
 }

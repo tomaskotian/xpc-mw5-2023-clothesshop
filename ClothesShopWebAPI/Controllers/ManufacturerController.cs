@@ -20,16 +20,16 @@ namespace ClothesShopWebAPI.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<ManufacturerEntity>))]
         [ProducesResponseType(400)]
-        public IActionResult GetAllManufacturers()
+        public async Task<IActionResult> GetAllManufacturers()
         {
-            var manufacturers = _manufacturerRepository.GetAllManufacturers();
+            var manufacturers = await _manufacturerRepository.GetAllManufacturers();
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(manufacturers);
         }
 
         [HttpPost]
-        public IActionResult AddManufacturer(ManufacturerDto manufacturerDto)
+        public async Task<IActionResult> AddManufacturer(ManufacturerDto manufacturerDto)
         {
             var manufacturer = new ManufacturerEntity()
             {

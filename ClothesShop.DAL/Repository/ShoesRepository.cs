@@ -2,6 +2,7 @@
 using ClothesShop.DAL.Entities;
 using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClothesShop.DAL.Repository
 {
@@ -13,9 +14,9 @@ namespace ClothesShop.DAL.Repository
             _data = data;
         }
 
-        public List<ShoesEntity> GetAllShoes()
+        public async Task<List<ShoesEntity>> GetAllShoes()
         {
-            return _data.ShoesData.ToList();
+            return await _data.ShoesData.ToListAsync();
         }
 
         public void AddShoe(ShoesEntity shoes)
@@ -30,13 +31,12 @@ namespace ClothesShop.DAL.Repository
             _data.SaveChanges();
         }
 
-        public ShoesEntity GetShoeById(Guid id)
+        public async Task<ShoesEntity> GetShoeById(Guid id)
         {
-            var shoes = _data.ShoesData.Where(c => c.Id == id).FirstOrDefault();
-            return shoes;
+            return await _data.ShoesData.Where(c => c.Id == id).FirstOrDefaultAsync(); ;
         }
 
-        public List<ShoesEntity> GetShoesFiltered(string manufacturer_name, SizeShoes size, Sex sex, string sort)
+        public async Task<List<ShoesEntity>> GetShoesFiltered(string manufacturer_name, SizeShoes size, Sex sex, string sort)
         {
             var shoes = _data.ShoesData.OfType<ShoesEntity>();
             if (manufacturer_name != default)
@@ -48,7 +48,7 @@ namespace ClothesShop.DAL.Repository
             if (sort == "ByPrice")
                 shoes = shoes.OrderBy(s => s.Price);
 
-            return shoes.ToList();
+            return await shoes.ToListAsync();
         }
     }
 }
