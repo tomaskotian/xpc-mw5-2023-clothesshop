@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClothesShopWebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230508114118_init")]
+    [Migration("20230511061725_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -73,7 +73,7 @@ namespace ClothesShopWebAPI.Migrations
 
                     b.HasIndex("ReviewEntityId");
 
-                    b.ToTable("AccessoriesEntities");
+                    b.ToTable("AccessoriesData");
                 });
 
             modelBuilder.Entity("ClothesShop.DAL.Entities.ClothingEntity", b =>
@@ -127,7 +127,7 @@ namespace ClothesShopWebAPI.Migrations
 
                     b.HasIndex("ReviewEntityId");
 
-                    b.ToTable("ClothingEntities");
+                    b.ToTable("ClothingData");
                 });
 
             modelBuilder.Entity("ClothesShop.DAL.Entities.ManufacturerEntity", b =>
@@ -153,7 +153,7 @@ namespace ClothesShopWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ManufacturerEntity");
+                    b.ToTable("ManufacturersData");
                 });
 
             modelBuilder.Entity("ClothesShop.DAL.Entities.ReviewEntity", b =>
@@ -175,7 +175,7 @@ namespace ClothesShopWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReviewEntity");
+                    b.ToTable("ReviewsData");
                 });
 
             modelBuilder.Entity("ClothesShop.DAL.Entities.ShoesEntity", b =>
@@ -229,7 +229,7 @@ namespace ClothesShopWebAPI.Migrations
 
                     b.HasIndex("ReviewEntityId");
 
-                    b.ToTable("ShoesEntities");
+                    b.ToTable("ShoesData");
                 });
 
             modelBuilder.Entity("ClothesShop.DAL.Entities.AccessoriesEntity", b =>

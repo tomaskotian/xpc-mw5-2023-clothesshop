@@ -12,7 +12,7 @@ namespace ClothesShopWebAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ManufacturerEntity",
+                name: "ManufacturersData",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -23,11 +23,11 @@ namespace ClothesShopWebAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ManufacturerEntity", x => x.Id);
+                    table.PrimaryKey("PK_ManufacturersData", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReviewEntity",
+                name: "ReviewsData",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -37,11 +37,11 @@ namespace ClothesShopWebAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReviewEntity", x => x.Id);
+                    table.PrimaryKey("PK_ReviewsData", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AccessoriesEntities",
+                name: "AccessoriesData",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -59,23 +59,23 @@ namespace ClothesShopWebAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AccessoriesEntities", x => x.Id);
+                    table.PrimaryKey("PK_AccessoriesData", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AccessoriesEntities_ManufacturerEntity_ManufacturerId",
+                        name: "FK_AccessoriesData_ManufacturersData_ManufacturerId",
                         column: x => x.ManufacturerId,
-                        principalTable: "ManufacturerEntity",
+                        principalTable: "ManufacturersData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AccessoriesEntities_ReviewEntity_ReviewEntityId",
+                        name: "FK_AccessoriesData_ReviewsData_ReviewEntityId",
                         column: x => x.ReviewEntityId,
-                        principalTable: "ReviewEntity",
+                        principalTable: "ReviewsData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ClothingEntities",
+                name: "ClothingData",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -94,23 +94,23 @@ namespace ClothesShopWebAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClothingEntities", x => x.Id);
+                    table.PrimaryKey("PK_ClothingData", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ClothingEntities_ManufacturerEntity_ManufacturerId",
+                        name: "FK_ClothingData_ManufacturersData_ManufacturerId",
                         column: x => x.ManufacturerId,
-                        principalTable: "ManufacturerEntity",
+                        principalTable: "ManufacturersData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClothingEntities_ReviewEntity_ReviewEntityId",
+                        name: "FK_ClothingData_ReviewsData_ReviewEntityId",
                         column: x => x.ReviewEntityId,
-                        principalTable: "ReviewEntity",
+                        principalTable: "ReviewsData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ShoesEntities",
+                name: "ShoesData",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -129,49 +129,49 @@ namespace ClothesShopWebAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoesEntities", x => x.Id);
+                    table.PrimaryKey("PK_ShoesData", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ShoesEntities_ManufacturerEntity_ManufacturerId",
+                        name: "FK_ShoesData_ManufacturersData_ManufacturerId",
                         column: x => x.ManufacturerId,
-                        principalTable: "ManufacturerEntity",
+                        principalTable: "ManufacturersData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ShoesEntities_ReviewEntity_ReviewEntityId",
+                        name: "FK_ShoesData_ReviewsData_ReviewEntityId",
                         column: x => x.ReviewEntityId,
-                        principalTable: "ReviewEntity",
+                        principalTable: "ReviewsData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AccessoriesEntities_ManufacturerId",
-                table: "AccessoriesEntities",
+                name: "IX_AccessoriesData_ManufacturerId",
+                table: "AccessoriesData",
                 column: "ManufacturerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AccessoriesEntities_ReviewEntityId",
-                table: "AccessoriesEntities",
+                name: "IX_AccessoriesData_ReviewEntityId",
+                table: "AccessoriesData",
                 column: "ReviewEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClothingEntities_ManufacturerId",
-                table: "ClothingEntities",
+                name: "IX_ClothingData_ManufacturerId",
+                table: "ClothingData",
                 column: "ManufacturerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClothingEntities_ReviewEntityId",
-                table: "ClothingEntities",
+                name: "IX_ClothingData_ReviewEntityId",
+                table: "ClothingData",
                 column: "ReviewEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoesEntities_ManufacturerId",
-                table: "ShoesEntities",
+                name: "IX_ShoesData_ManufacturerId",
+                table: "ShoesData",
                 column: "ManufacturerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoesEntities_ReviewEntityId",
-                table: "ShoesEntities",
+                name: "IX_ShoesData_ReviewEntityId",
+                table: "ShoesData",
                 column: "ReviewEntityId");
         }
 
@@ -179,19 +179,19 @@ namespace ClothesShopWebAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AccessoriesEntities");
+                name: "AccessoriesData");
 
             migrationBuilder.DropTable(
-                name: "ClothingEntities");
+                name: "ClothingData");
 
             migrationBuilder.DropTable(
-                name: "ShoesEntities");
+                name: "ShoesData");
 
             migrationBuilder.DropTable(
-                name: "ManufacturerEntity");
+                name: "ManufacturersData");
 
             migrationBuilder.DropTable(
-                name: "ReviewEntity");
+                name: "ReviewsData");
         }
     }
 }

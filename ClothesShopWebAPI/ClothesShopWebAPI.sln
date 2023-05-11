@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClothesShop.Common", "..\Cl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClothesShop.DAL", "..\ClothesShop.DAL\ClothesShop.DAL.csproj", "{D62ED05B-8F6C-4103-9564-BD883B742840}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothesShopTests", "..\ClothesShopTests\ClothesShopTests.csproj", "{A61B5A7C-5CB9-478D-AEE7-FB84B1DA80EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D62ED05B-8F6C-4103-9564-BD883B742840}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D62ED05B-8F6C-4103-9564-BD883B742840}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D62ED05B-8F6C-4103-9564-BD883B742840}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A61B5A7C-5CB9-478D-AEE7-FB84B1DA80EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A61B5A7C-5CB9-478D-AEE7-FB84B1DA80EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A61B5A7C-5CB9-478D-AEE7-FB84B1DA80EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A61B5A7C-5CB9-478D-AEE7-FB84B1DA80EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
