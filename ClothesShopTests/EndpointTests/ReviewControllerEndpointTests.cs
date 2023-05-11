@@ -1,21 +1,21 @@
 using ClothesShopWebAPI.IntegrationTests;
 using System.Net;
 
-namespace ClothesShopTests
+namespace ClothesShopTests.EndpointTests
 {
-    public class ControllerEndpointTests : IClassFixture<AppInstance>
+    public class ReviewControllerEndpointTests : IClassFixture<AppInstance>
     {
         private readonly AppInstance _instance;
-        public ControllerEndpointTests(AppInstance instance)
+        public ReviewControllerEndpointTests(AppInstance instance)
         {
             _instance = instance;
         }
 
         [Fact]
-        public async Task Test1()
+        public async Task TestGetAllReview()
         {
             var client = _instance.CreateClient();
-            var result = await client.GetAsync("api/Accessories");
+            var result = await client.GetAsync("api/Review");
             Assert.Equal(HttpStatusCode.OK, result.StatusCode);
 
         }
