@@ -1,41 +1,5 @@
-using ClothesShop.DAL.Interfaces;
-using ClothesShop.DAL.Repository;
-using System.Text.Json.Serialization;
-using ClothesShop.DAL.Data;
-using Microsoft.EntityFrameworkCore;
+using ClothesShopWebAPI;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddControllers().AddJsonOptions(x =>
-x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles); //Set ReferenceHandler ignore loop in comodities, for depth 2 Commodity.Manufacturer = Null 
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ClothesShopWebAPI"));
-});
-builder.Services.AddSingleton<InitialData>();
-builder.Services.AddScoped<IClothingRepository,ClothingRepository>();
-builder.Services.AddScoped<IShoesRepository, ShoesRepository>();
-builder.Services.AddScoped<IAccessoriesRepository, AccessoriesRepository>();
-builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
-builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+var app = Startup.InitializeApp(args);
 
 app.Run();
