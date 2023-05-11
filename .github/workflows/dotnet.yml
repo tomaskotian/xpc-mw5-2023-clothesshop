@@ -30,6 +30,8 @@ jobs:
         dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore ./ClothesShopWebAPI
+    - name: Update
+      run: dotnet ef database update
     - name: Build
       run: dotnet build --no-restore ./ClothesShopWebAPI
       
