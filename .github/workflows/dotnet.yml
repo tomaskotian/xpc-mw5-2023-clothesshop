@@ -8,9 +8,19 @@ on:
     branches: [ "main" ]
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
+
+    services:
+        mssql:
+            image: mcr.microsoft.com/mssql/server:2019-latest
+            env:
+                SA_PASSWORD: ClothesShop
+                ACCEPT_EULA: 'Y'
+            ports:
+                - 1433:1433
 
     steps:
     - uses: actions/checkout@v3
@@ -22,5 +32,6 @@ jobs:
       run: dotnet restore ./ClothesShopWebAPI
     - name: Build
       run: dotnet build --no-restore ./ClothesShopWebAPI
+      
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ./ClothesShopTests/ClothesShopTests.csproj
