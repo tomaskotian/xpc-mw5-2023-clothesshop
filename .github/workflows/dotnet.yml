@@ -8,9 +8,19 @@ on:
     branches: [ "main" ]
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
+
+    services:
+        mssql:
+            image: mcr.microsoft.com/mssql/server:2019-latest
+            env:
+                SA_PASSWORD: ClothesShop
+                ACCEPT_EULA: 'Y'
+            ports:
+                - 1433:1433
 
     steps:
     - uses: actions/checkout@v3
@@ -20,7 +30,12 @@ jobs:
         dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore ./ClothesShopWebAPI
+    - name: Install ef
+      run: dotnet tool install --global dotnet-ef
+    - name: Update
+      run: dotnet ef database update
     - name: Build
       run: dotnet build --no-restore ./ClothesShopWebAPI
+      
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ./ClothesShopTests/ClothesShopTests.csproj
