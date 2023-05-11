@@ -3,7 +3,6 @@ using ClothesShop.DAL.Interfaces;
 using ClothesShop.DAL.Repository;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.Configuration.EnvironmentVariables;
 
 namespace ClothesShopWebAPI
 {
@@ -12,7 +11,6 @@ namespace ClothesShopWebAPI
         public static WebApplication InitializeApp(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Configuration.AddEnvironmentVariables();
             ConfigureServices(builder);
             var app = builder.Build();
             Configure(app);
