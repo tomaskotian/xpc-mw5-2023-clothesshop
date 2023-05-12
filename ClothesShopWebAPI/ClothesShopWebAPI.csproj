@@ -19,5 +19,13 @@
   	<ProjectReference Include="..\ClothesShop.DAL\ClothesShop.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Nový priečinok\xpc-mw5-2023-clothesshop\ClothesShopWebAPI\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Nový priečinok\xpc-mw5-2023-clothesshop\ClothesShopWebAPI\.editorconfig" />
+  </ItemGroup>
+
 
 </Project>

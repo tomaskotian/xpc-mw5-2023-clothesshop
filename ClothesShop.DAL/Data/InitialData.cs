@@ -3,21 +3,21 @@ using ClothesShop.Common.Enums;
 using ClothesShop.DAL.Entities;
 
 namespace ClothesShop.DAL.Data;
-public class InitialData 
-{   
+public class InitialData
+{
     public List<ShoesEntity> ShoesData { get; set; }
-    public List<AccessoriesEntity> AccessoriesData  { get; set; }
+    public List<AccessoriesEntity> AccessoriesData { get; set; }
     public List<ClothingEntity> ClothingData { get; set; }
 
-    public InitialData() 
+    public InitialData()
     {
-        int  number_products = 5;
+        int number_products = 5;
         ICollection<ManufacturerEntity> Manufacturers = GetFakeManufacturers(3);
 
         ShoesData = GetFakeShoesEntities(number_products, Manufacturers);
         AccessoriesData = GetFakeAccessoriesEntities(number_products, Manufacturers);
         ClothingData = GetFakeClothingEntities(number_products, Manufacturers);
-    }  
+    }
 
     public void AddShoes(ShoesEntity entity)
     {
@@ -50,12 +50,12 @@ public class InitialData
             .RuleFor(c => c.ManufacturerId, f => Guid.NewGuid())
             .RuleFor(c => c.Manufacturer, f => f.Random.CollectionItem(Manufacturers))
             .RuleFor(c => c.ReviewId, f => Guid.NewGuid())
-            .RuleFor(c => c.ReviewEntity, f => new ReviewEntity 
-            { 
+            .RuleFor(c => c.ReviewEntity, f => new ReviewEntity
+            {
                 Id = f.Random.Guid(),
-                Stars = f.Random.UInt(1, 5), 
+                Stars = f.Random.UInt(1, 5),
                 Title = f.Lorem.Paragraph(),
-                Description = Lorem.Sentence() 
+                Description = Lorem.Sentence()
             })
             .RuleFor(c => c.CategoryClothing, f => f.PickRandom<CategoryClothing>())
             .RuleFor(c => c.SizeClothing, f => f.PickRandom<SizeClothing>())
@@ -122,7 +122,7 @@ public class InitialData
 
         return ClothingFaker.Generate(count);
     }
-    
+
     private static ICollection<ManufacturerEntity> GetFakeManufacturers(int count)
     {
         Randomizer.Seed = new Random(623423);

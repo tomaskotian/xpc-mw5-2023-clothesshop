@@ -12,7 +12,7 @@ namespace ClothesShopWebAPI.Controllers
     {
         private readonly IManufacturerRepository _manufacturerRepository;
 
-        public ManufacturerController( IManufacturerRepository manufacturerRepository)
+        public ManufacturerController(IManufacturerRepository manufacturerRepository)
         {
             _manufacturerRepository = manufacturerRepository;
         }
@@ -37,7 +37,7 @@ namespace ClothesShopWebAPI.Controllers
                 Name = manufacturerDto.Name,
                 Description = manufacturerDto.Description,
                 Logo = manufacturerDto.Logo,
-                Origin= manufacturerDto.Origin,               
+                Origin = manufacturerDto.Origin,
             };
 
             _manufacturerRepository.AddManufacturer(manufacturer);

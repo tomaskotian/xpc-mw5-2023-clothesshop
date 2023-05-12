@@ -4,6 +4,6 @@ namespace ClothesShopWebAPI.IntegrationTests
 {
     public class AppInstance : WebApplicationFactory<Startup>
     {
-        
+
     }
 }

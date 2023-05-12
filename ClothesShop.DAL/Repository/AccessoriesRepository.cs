@@ -9,7 +9,7 @@ namespace ClothesShop.DAL.Repository
     {
         private readonly DataContext _data;
 
-        public AccessoriesRepository(DataContext data) 
+        public AccessoriesRepository(DataContext data)
         {
             _data = data;
         }
