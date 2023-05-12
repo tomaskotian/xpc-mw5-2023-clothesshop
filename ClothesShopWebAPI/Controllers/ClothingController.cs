@@ -102,7 +102,7 @@ namespace ClothesShop.DAL.Controllers
 
         [HttpDelete]
         [Route("{id:guid}")]
-        public IActionResult DeleteClothing([FromRoute] Guid id) 
+        public IActionResult DeleteClothing([FromRoute] Guid id)
         {
             var clothing = _clothingRepository.GetClothingById(id);
 

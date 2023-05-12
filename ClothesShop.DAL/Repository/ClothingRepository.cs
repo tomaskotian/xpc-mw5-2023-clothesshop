@@ -7,8 +7,8 @@ namespace ClothesShop.DAL.Repository
 {
     public class ClothingRepository : IClothingRepository
     {
-        private readonly DataContext _data;   
-        public ClothingRepository(DataContext data) 
+        private readonly DataContext _data;
+        public ClothingRepository(DataContext data)
         {
             _data = data;
         }

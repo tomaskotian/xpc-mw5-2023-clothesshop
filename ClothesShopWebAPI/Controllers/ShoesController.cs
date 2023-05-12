@@ -17,7 +17,7 @@ namespace ClothesShopWebAPI.Controllers
 
         public ShoesController(IShoesRepository shoesRepository, IManufacturerRepository manufacturerRepository, IReviewRepository reviewRepository)
         {
-            _shoesRepository= shoesRepository;
+            _shoesRepository = shoesRepository;
             _manufacturerRepository = manufacturerRepository;
             _reviewRepository = reviewRepository;
         }
@@ -25,10 +25,10 @@ namespace ClothesShopWebAPI.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<ShoesEntity>))]
         [ProducesResponseType(400)]
-        public IActionResult GetAllShoes() 
+        public IActionResult GetAllShoes()
         {
             var shoes = _shoesRepository.GetAllShoes();
-            if(!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(shoes);
         }
